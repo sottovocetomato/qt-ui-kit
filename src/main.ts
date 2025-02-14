@@ -1,5 +1,10 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import "./style.css";
+import App from "./App.vue";
+import { vMaska } from "maska/vue";
+import setDefaultValidationRules from "./config/vee-validate/validation";
 
-createApp(App).mount('#app')
+setDefaultValidationRules();
+const Vue = createApp(App);
+Vue.directive("maska", vMaska);
+Vue.mount("#app");

@@ -17,11 +17,11 @@
 import { defineProps } from "vue";
 
 interface ButtonProps {
-  type: string;
-  customClass: string;
-  size: "sm" | "md" | "lg";
-  variant: "primary" | "secondary" | "danger";
-  disabled: boolean;
+  type?: string;
+  customClass?: string;
+  size?: "sm" | "md" | "lg";
+  variant?: "primary" | "secondary" | "danger";
+  disabled?: boolean;
 }
 
 const {

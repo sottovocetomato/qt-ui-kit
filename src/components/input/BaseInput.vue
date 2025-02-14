@@ -24,8 +24,24 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useField } from "vee-validate";
+import { defineProps } from "vue";
+
+interface InputProps {
+  type?: string;
+  name?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  min?: string | number;
+  max?: string | number;
+  maxlength?: string;
+  minlength?: string;
+  customClass?: string;
+  mask?: string;
+  label?: string;
+  modelValue?: string | object;
+}
 
 const {
   name = "",
@@ -39,20 +55,7 @@ const {
   minlength = "",
   mask = "",
   label = "",
-} = defineProps({
-  type: String,
-  name: String,
-  disabled: Boolean,
-  placeholder: String,
-  min: [String, Number],
-  max: [String, Number],
-  maxlength: String,
-  minlength: String,
-  customClass: String,
-  mask: String,
-  label: String,
-  modelValue: [String, Number, Object],
-});
+} = defineProps<InputProps>();
 
 const { value, errorMessage } = useField(() => name, undefined, {
   syncVModel: true,
