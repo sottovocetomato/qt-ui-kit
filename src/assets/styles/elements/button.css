@@ -1,0 +1,39 @@
+:root {
+  --btn-height-md: 38px;
+  --btn-height-sm: 32px;
+  --btn-height-lg: 48px;
+  --btn-width: 160px;
+}
+
+.btn {
+  height: var(--btn-height-md);
+  width: var(--btn-width);
+  background-color: var(--primary-color);
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: var(--font-sm);
+  display: block;
+}
+.btn:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.btn-sm {
+  height: var(--btn-height-sm);
+}
+.btn-lg {
+  height: var(--btn-height-lg);
+  border-radius: 25px;
+}
+.btn-primary {
+  background-color: var(--primary-color);
+}
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-color-darker);
+}

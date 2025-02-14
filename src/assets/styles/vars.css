@@ -1,0 +1,33 @@
+/* colors */
+:root {
+  color-scheme: light dark;
+  --bg-color-main: light-dark(Canvas, #212121);
+  --primary-color: light-dark(#174b7c, #174b7c);
+  --secondary-color: light-dark(#6f8898, #5d7e9b);
+  --primary-color-darker: light-dark(#133c64, #133c64);
+  --primary-color-light: light-dark(rgba(23, 75, 124, 0.28));
+  --header-color: light-dark(#1a263d);
+  --input-group-border-color: light-dark(#f7f8f8);
+  --input-group-border-color-focus: light-dark(#174b7c5a);
+
+  --validation-error: light-dark(#fa8888);
+  --validation-error-focus: light-dark(#fa4040);
+}
+
+/* border */
+:root {
+  --input-group-border: 2px solid var(--input-group-border-color);
+  --input-group-border-radius: 6px;
+}
+
+/* sizing */
+:root {
+  --input-group-padding: 20px;
+  --input-group-height: 64px;
+
+  --spacer: 20px;
+
+  --font-xl: 24px;
+  --font-md: 18px;
+  --font-sm: 14px;
+}
