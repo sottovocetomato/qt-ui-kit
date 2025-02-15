@@ -1,10 +1,18 @@
 @import "reset.css";
 @import "vars.css";
+@import "../fonts/fonts.css";
 @import "elements/button.css";
 @import "elements/inputs.css";
-body {
-  font-family: "Montserrat";
+
+:root {
+  --font-fallback: Monospace, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-sans;
 }
+
+body {
+  font-family: Montserrat, var(--font-fallback);
+}
+
 .main-wrap {
   height: 100vh;
 }
@@ -25,38 +33,6 @@ body {
   font-size: var(--font-xl);
   font-weight: 600;
   margin-bottom: calc(var(--spacer) * 2);
-}
-.form-field {
-  position: relative;
-  color: var(--primary-color);
-}
-
-.form-field label {
-  /* allows label to be absolute */
-  position: absolute;
-  top: 39%;
-  transform: translateY(-50%);
-  left: calc(var(--spacer) + 2px);
-  font-size: var(--font-sm);
-  pointer-events: none;
-  transition: 0.3s;
-  font-weight: 300;
-}
-
-.form-field {
-  position: relative;
-}
-
-.form-field input:focus + label,
-.form-field input:not(:placeholder-shown) + label {
-  top: 17px;
-}
-
-.form-field input::placeholder {
-  color: transparent;
-}
-input[type="text"] {
-  padding-top: 20px;
 }
 
 .range-inputs__inputs {

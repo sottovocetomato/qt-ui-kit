@@ -7,8 +7,6 @@
   --primary-color-darker: light-dark(#133c64, #133c64);
   --primary-color-light: light-dark(rgba(23, 75, 124, 0.28));
   --header-color: light-dark(#1a263d);
-  --input-group-border-color: light-dark(#f7f8f8);
-  --input-group-border-color-focus: light-dark(#174b7c5a);
 
   --validation-error: light-dark(#fa8888);
   --validation-error-focus: light-dark(#fa4040);

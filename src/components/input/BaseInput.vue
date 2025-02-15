@@ -1,10 +1,7 @@
 <template>
-  <div class="form-field">
+  <div class="input-wrap">
     <input
-      :class="[
-        customClass || 'input-group base-input',
-        errorMessage ? 'input-group-error' : '',
-      ]"
+      :class="[customClass || '', errorMessage ? 'error' : '']"
       v-model="value"
       :maxlength="maxlength"
       :minlength="minlength"
@@ -18,7 +15,7 @@
     />
     <label v-if="label">{{ label }}</label>
 
-    <span v-if="errorMessage" class="input-group-error__message">
+    <span v-if="errorMessage" class="error-message">
       {{ errorMessage }}
     </span>
   </div>
@@ -29,7 +26,7 @@ import { useField } from "vee-validate";
 import { defineProps } from "vue";
 
 interface InputProps {
-  type?: string;
+  type?: "text" | "number";
   name?: string;
   disabled?: boolean;
   placeholder?: string;
@@ -54,7 +51,7 @@ const {
   maxlength = "255",
   minlength = "",
   mask = "",
-  label = "",
+  label = "Label",
 } = defineProps<InputProps>();
 
 const { value, errorMessage } = useField(() => name, undefined, {

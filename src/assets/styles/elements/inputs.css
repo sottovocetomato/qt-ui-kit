@@ -1,4 +1,16 @@
-.input-group {
+:root {
+  --input-group-border-color: light-dark(#f7f8f8, #859cb25a);
+  --input-group-border-color-focus: light-dark(
+    #174b7c5a,
+    rgba(98, 115, 131, 0.35)
+  );
+}
+.input-wrap {
+  position: relative;
+  color: var(--primary-color);
+}
+input[type="text"],
+input[type="number"] {
   height: var(--input-group-height);
   border: var(--input-group-border);
   border-radius: var(--input-group-border-radius);
@@ -10,19 +22,61 @@
   width: 100%;
   margin-bottom: var(--spacer);
 }
-.input-group:focus {
+input[type="text"]:focus,
+input[type="number"]:focus {
   outline-color: var(--input-group-border-color-focus);
 }
-.input-group-error {
+input[type="text"].error,
+input[type="number"].error {
   border-color: var(--validation-error);
 }
-.input-group-error:focus {
+input[type="text"].error:focus,
+input[type="number"].error:focus {
   outline-color: var(--validation-error-focus);
 }
-.input-group-error__message {
+.error-message {
   position: absolute;
   width: 100%;
   left: 2px;
   bottom: 6px;
   color: red;
+}
+input[type="text"],
+input[type="number"],
+select,
+textarea,
+input[type="checkbox"],
+input[type="radio"] {
+  position: relative;
+}
+input + label,
+select + label,
+textarea + label {
+  /* allows label to be absolute */
+  position: absolute;
+  top: 39%;
+  transform: translateY(-50%);
+  left: calc(var(--spacer) + 2px);
+  font-size: var(--font-sm);
+  pointer-events: none;
+  transition: 0.3s;
+  font-weight: 300;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label,
+select:focus + label,
+select:not(:placeholder-shown) + label,
+textarea:focus + label,
+textarea:not(:placeholder-shown) + label {
+  top: 17px;
+}
+
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: transparent;
+}
+input[type="text"] {
+  padding-top: 20px;
 }
