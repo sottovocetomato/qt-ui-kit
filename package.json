@@ -21,7 +21,8 @@
     "./styles": "./dist/style.css"
   },
   "dependencies": {
-    "maska": "^3.1.0",
+    "@vee-validate/rules": "^4.15.0",
+    "maska": "3.1.0",
     "vee-validate": ">=4",
     "vue": ">=3"
   },
@@ -43,8 +44,9 @@
     "vue-tsc": "^2.2.0"
   },
   "peerDependencies": {
-    "vee-validate": ">=4",
     "maska": "3.1.0",
-    "vue": ">=3"
+    "vee-validate": ">=4",
+    "vue": ">=3",
+    "@vee-validate/rules": "4.15.0"
   }
 }

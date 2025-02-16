@@ -10,7 +10,7 @@
       :type="type"
       :disabled="disabled"
       :placeholder="placeholder"
-      v-maska
+      maska
       :data-maska="mask"
     />
     <label v-if="label">{{ label }}</label>
@@ -53,8 +53,10 @@ const {
   mask = "",
   label = "Label",
 } = defineProps<InputProps>();
-
-const { value, errorMessage } = useField(() => name, undefined, {
+function hello() {
+  console.log("hello");
+}
+const { value, errorMessage, setErrors } = useField(() => name, undefined, {
   syncVModel: true,
 });
 </script>

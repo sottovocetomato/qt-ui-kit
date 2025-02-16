@@ -2,16 +2,26 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 
 import BaseInput from "./BaseInput.vue";
 import "../../assets/styles/main.css";
+
 import {
   ThemeDecorator,
   ThemeType,
 } from "../../config/storybook/ThemeDecorator";
+import {
+  nextTick,
+  onMounted,
+  ref,
+  useTemplateRef,
+  defineExpose,
+  computed,
+} from "vue";
+import { useForm } from "vee-validate";
 
 const meta: Meta<typeof BaseInput> = {
   component: BaseInput,
   argTypes: {
     name: { control: { type: "text" } },
-    type: { control: { type: "radio", options: ["number", "text"] } },
+    type: { control: { type: "radio" }, options: ["number", "text"] },
     disabled: { control: { type: "boolean" } },
     placeholder: { control: { type: "text" } },
     min: { control: { type: "number" } },
@@ -20,7 +30,7 @@ const meta: Meta<typeof BaseInput> = {
     minlength: { control: { type: "number" } },
     mask: { control: { type: "text" } },
     label: { control: { type: "text" } },
-    errorMessage: { control: { type: "boolean" } },
+    customClass: { control: { type: "text" } },
   },
 };
 
@@ -33,8 +43,32 @@ export const DefaultInput: Story = {
       return { args };
     },
 
-    args: { variant: "primary", theme: ThemeType.LIGHT },
-
-    template: `<BaseInput></BaseInput>`,
+    template: `<BaseInput v-bind="args" ></BaseInput>`,
   }),
+  args: {
+    variant: "primary",
+    theme: ThemeType.LIGHT,
+  },
+};
+
+export const ValidationErrorInput: Story = {
+  render: (args) => ({
+    components: { BaseInput },
+    setup() {
+      const { setFieldError, errors } = useForm({
+        initialValues: {
+          input: "",
+        },
+      });
+      onMounted(() => setFieldError("input", "This field cannot be empty!"));
+
+      return { args, setFieldError, errors };
+    },
+
+    template: `<BaseInput v-bind="args" name="input"></BaseInput>`,
+  }),
+  args: {
+    variant: "primary",
+    theme: ThemeType.LIGHT,
+  },
 };

@@ -5,9 +5,11 @@ import UiKit from "./components/UiKit.vue";
 </script>
 
 <template>
-  <ThemesLayout>
-    <UiKit />
-  </ThemesLayout>
+  <Suspense>
+    <ThemesLayout>
+      <UiKit />
+    </ThemesLayout>
+  </Suspense>
 </template>
 
 <style scoped>
