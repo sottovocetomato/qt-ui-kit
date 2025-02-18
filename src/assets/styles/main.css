@@ -34,42 +34,6 @@ body {
   margin-bottom: calc(var(--spacer) * 2);
 }
 
-.range-inputs__inputs {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.range-inputs .form-field {
-  width: 49%;
-}
-
-.range-inputs__label {
-  display: inline-block;
-  font-size: var(--font-sm);
-  color: var(--primary-color);
-  margin-bottom: var(--spacer);
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  background: transparent;
-  bottom: 0;
-  color: transparent;
-  cursor: pointer;
-  height: auto;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-}
-.range-inputs__inputs input {
-  text-align: end;
-}
-
-.range-inputs__inputs input + label {
-  top: 39% !important;
-}
 .base-select {
   background: url("./icons/chevron-down.svg") no-repeat right;
   background-position-x: calc(100% - var(--spacer));

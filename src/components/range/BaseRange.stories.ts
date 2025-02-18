@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BaseInput from "./BaseInput.vue";
+import BaseRange from "./BaseRange.vue";
 import "../../assets/styles/main.css";
 
 import {
@@ -10,11 +10,11 @@ import {
 import { onMounted } from "vue";
 import { useForm } from "vee-validate";
 
-const meta: Meta<typeof BaseInput> = {
-  component: BaseInput,
+const meta: Meta<typeof BaseRange> = {
+  component: BaseRange,
   argTypes: {
     name: { control: { type: "text" } },
-    type: { control: { type: "radio" }, options: ["number", "text"] },
+    type: { control: { type: "radio" }, options: ["numbers", "date"] },
     variant: { control: { type: "radio" }, options: ["square", "oval"] },
     disabled: { control: { type: "boolean" } },
     placeholder: { control: { type: "text" } },
@@ -28,16 +28,16 @@ const meta: Meta<typeof BaseInput> = {
   },
 };
 
-type Story = StoryObj<typeof BaseInput>;
+type Story = StoryObj<typeof BaseRange>;
 export default meta;
-export const DefaultInput: Story = {
+export const DefaultRangeInputs: Story = {
   render: (args) => ({
-    components: { BaseInput },
+    components: { BaseRange },
     setup() {
       return { args };
     },
 
-    template: `<BaseInput v-bind="args" ></BaseInput>`,
+    template: `<BaseRange v-bind="args" ></BaseRange>`,
   }),
   args: {
     variant: "square",
@@ -45,21 +45,27 @@ export const DefaultInput: Story = {
   },
 };
 
-export const ValidationErrorInput: Story = {
+export const ValidationNumberRangeInputsError: Story = {
   render: (args) => ({
-    components: { BaseInput },
+    components: { BaseRange },
     setup() {
-      const { setFieldError, errors } = useForm({
+      const { setFieldError, errors, setErrors } = useForm({
         initialValues: {
-          input: "",
+          rangeTo: "",
+          rangeFrom: "",
         },
       });
-      onMounted(() => setFieldError("input", "This field cannot be empty!"));
+      onMounted(() =>
+        setErrors({
+          rangeTo: "This field cannot be empty!",
+          rangeFrom: "This field cannot be empty!",
+        })
+      );
 
-      return { args, setFieldError, errors };
+      return { args, setFieldError, errors, setErrors };
     },
 
-    template: `<BaseInput v-bind="args" name="input"></BaseInput>`,
+    template: `<BaseRange v-bind="args" nameTo="rangeTo" nameFrom="rangeFrom"></BaseRange>`,
   }),
   args: {
     variant: "primary",

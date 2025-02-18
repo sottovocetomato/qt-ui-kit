@@ -34,6 +34,7 @@ export const PrimaryButton: Story = {
       </div>
     `,
   }),
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };
 
 export const SecondaryButton = {
@@ -50,5 +51,26 @@ export const SecondaryButtonDarkTheme = {
   args: { variant: "secondary" },
   decorators: [ThemeDecorator(ThemeType.DARK)],
 };
+
+export const DangerButton = {
+  ...PrimaryButton,
+  args: { variant: "danger" },
+};
+
+export const DangerButtonDarkTheme = {
+  ...DangerButton,
+  decorators: [ThemeDecorator(ThemeType.DARK)],
+};
+
+export const WarningButton = {
+  ...PrimaryButton,
+  args: { variant: "warning" },
+};
+
+export const WarningButtonDarkTheme = {
+  ...WarningButton,
+  decorators: [ThemeDecorator(ThemeType.DARK)],
+};
+
 // export const SecondaryButton = Template.bind({});
 // SecondaryButton.args = { color: "secondary" };

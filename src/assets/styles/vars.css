@@ -6,10 +6,11 @@
   --secondary-color: light-dark(#6f8898, #5d7e9b);
   --primary-color-darker: light-dark(#133c64, #133c64);
   --primary-color-light: light-dark(rgba(23, 75, 124, 0.28));
-  --header-color: light-dark(#1a263d);
-
-  --validation-error: light-dark(#fa8888);
-  --validation-error-focus: light-dark(#fa4040);
+  --header-color: light-dark(#1a263d, #1a263d);
+  --danger-color: light-dark(#861616, #861616);
+  --warning-color: light-dark(#d3ae19, #d3ae19);
+  --validation-error: light-dark(#fa8888, #fa8888);
+  --validation-error-focus: light-dark(#fa4040, #fa8888);
 }
 
 /* border */

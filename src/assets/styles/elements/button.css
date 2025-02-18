@@ -33,6 +33,12 @@
 .btn-secondary {
   background-color: var(--secondary-color);
 }
+.btn-danger {
+  background-color: var(--danger-color);
+}
+.btn-warning {
+  background-color: var(--warning-color);
+}
 .btn:hover {
   cursor: pointer;
   background-color: var(--primary-color-darker);

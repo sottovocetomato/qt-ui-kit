@@ -8,6 +8,8 @@
         type="date"
         :max="dateEnd"
         :key="rangeStartKey"
+        :variant="variant"
+        :disabled="disabled"
         v-model="dateStart"
       />
       <BaseInput
@@ -15,7 +17,9 @@
         label="по"
         type="date"
         :min="dateStart"
+        :variant="variant"
         :key="rangeEndKey"
+        :disabled="disabled"
         v-model="dateEnd"
       />
     </div>
@@ -29,6 +33,8 @@
         type="number"
         :key="rangeStartKey"
         :modelValue="rangeStart"
+        :variant="variant"
+        :disabled="disabled"
         @update:modelValue="onRangeStartUpdate"
       />
       <BaseInput
@@ -38,17 +44,30 @@
         :min="rangeStart"
         :key="rangeEndKey"
         :modelValue="rangeEnd"
+        :variant="variant"
+        :disabled="disabled"
         @update:modelValue="onRangeEndUpdate"
       />
     </div>
   </div>
 </template>
 
-<script setup>
-import { useField } from "vee-validate";
-import BaseInput from "@/components/Form/BaseInput.vue";
+<script setup lang="ts">
+import BaseInput from "@/components/input/BaseInput.vue";
 import { nextTick, ref } from "vue";
 import debounce from "lodash.debounce";
+
+interface RangeInputProps {
+  nameFrom?: string;
+  nameTo?: string;
+  type?: "date" | "numbers";
+  name?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  customClass?: string;
+  variant?: "square" | "oval";
+  label?: string;
+}
 
 const dateStart = ref(null);
 const dateEnd = ref(null);
@@ -64,18 +83,11 @@ const {
   type = "numbers",
   disabled = false,
   customClass = "",
+  variant = "square",
   placeholder = "",
+
   label = "",
-} = defineProps({
-  nameFrom: String,
-  nameTo: String,
-  type: String,
-  name: String,
-  disabled: Boolean,
-  placeholder: String,
-  customClass: String,
-  label: String,
-});
+} = defineProps<RangeInputProps>();
 
 const onRangeEndUpdate = debounce((e) => {
   if (e < rangeStart.value) {
