@@ -4,13 +4,12 @@
 @import "elements/button.css";
 @import "elements/inputs.css";
 
-:root {
-  --font-fallback: Monospace, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-sans;
-}
-
+html,
 body {
-  font-family: Montserrat, var(--font-fallback);
+  scrollbar-gutter: stable;
+}
+body {
+  font-family: Montserrat, system-ui;
 }
 
 .main-wrap {
@@ -150,4 +149,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*}*/
 .modal-btn {
   width: 225px;
+}
+.error-message {
+  position: absolute;
+  width: 100%;
+  left: 2px;
+  bottom: 3px;
+  color: red;
+  font-size: var(--font-xs);
 }

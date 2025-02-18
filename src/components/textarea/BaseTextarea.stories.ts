@@ -1,24 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BaseInput from "./BaseInput.vue";
+import BaseTextarea from "./BaseTextarea.vue";
 import "../../assets/styles/main.css";
 
 import {
   ThemeDecorator,
   ThemeType,
 } from "../../config/storybook/ThemeDecorator";
-import {
-  nextTick,
-  onMounted,
-  ref,
-  useTemplateRef,
-  defineExpose,
-  computed,
-} from "vue";
+import { onMounted } from "vue";
 import { useForm } from "vee-validate";
 
-const meta: Meta<typeof BaseInput> = {
-  component: BaseInput,
+const meta: Meta<typeof BaseTextarea> = {
+  component: BaseTextarea,
   argTypes: {
     name: { control: { type: "text" } },
     type: { control: { type: "radio" }, options: ["number", "text"] },
@@ -35,16 +28,16 @@ const meta: Meta<typeof BaseInput> = {
   },
 };
 
-type Story = StoryObj<typeof BaseInput>;
+type Story = StoryObj<typeof BaseTextarea>;
 export default meta;
-export const DefaultInput: Story = {
+export const DefaultTextarea: Story = {
   render: (args) => ({
-    components: { BaseInput },
+    components: { BaseTextarea },
     setup() {
       return { args };
     },
 
-    template: `<BaseInput v-bind="args" ></BaseInput>`,
+    template: `<BaseTextarea v-bind="args" ></BaseTextarea>`,
   }),
   args: {
     variant: "square",
@@ -52,21 +45,21 @@ export const DefaultInput: Story = {
   },
 };
 
-export const ValidationErrorInput: Story = {
+export const ValidationErrorTextarea: Story = {
   render: (args) => ({
-    components: { BaseInput },
+    components: { BaseTextarea },
     setup() {
       const { setFieldError, errors } = useForm({
         initialValues: {
-          input: "",
+          textarea: "",
         },
       });
-      onMounted(() => setFieldError("input", "This field cannot be empty!"));
+      onMounted(() => setFieldError("textarea", "This field cannot be empty!"));
 
       return { args, setFieldError, errors };
     },
 
-    template: `<BaseInput v-bind="args" name="input"></BaseInput>`,
+    template: `<BaseTextarea v-bind="args" name="textarea"></BaseTextarea>`,
   }),
   args: {
     variant: "primary",

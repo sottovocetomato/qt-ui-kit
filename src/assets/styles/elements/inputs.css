@@ -4,13 +4,20 @@
     #174b7c5a,
     rgba(98, 115, 131, 0.35)
   );
+  --input-group-border: 2px solid var(--input-group-border-color);
+  --input-group-border-radius: 6px;
+  --input-group-border-radius-oval: 35px;
+  --input-group-padding: 20px;
+  --input-group-height: 64px;
 }
-.input-wrap {
+.input-wrap,
+.textarea-wrap {
   position: relative;
   color: var(--primary-color);
 }
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+textarea {
   height: var(--input-group-height);
   border: var(--input-group-border);
   border-radius: var(--input-group-border-radius);
@@ -23,31 +30,29 @@ input[type="number"] {
   margin-bottom: var(--spacer);
 }
 input[type="text"]:focus,
-input[type="number"]:focus {
+input[type="number"]:focus,
+textarea:focus {
   outline-color: var(--input-group-border-color-focus);
 }
 input[type="text"].error,
-input[type="number"].error {
+input[type="number"].error,
+textarea.error {
   border-color: var(--validation-error);
 }
 input[type="text"].error:focus,
-input[type="number"].error:focus {
+input[type="number"].error:focus,
+textarea.error:focus {
   outline-color: var(--validation-error-focus);
 }
-.error-message {
-  position: absolute;
-  width: 100%;
-  left: 2px;
-  bottom: 6px;
-  color: red;
-}
-input[type="text"],
-input[type="number"],
+
+input,
 select,
-textarea,
-input[type="checkbox"],
-input[type="radio"] {
+textarea {
   position: relative;
+}
+textarea {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 input + label,
 select + label,
@@ -60,9 +65,11 @@ textarea + label {
   font-size: var(--font-sm);
   pointer-events: none;
   transition: 0.3s;
-  font-weight: 300;
+  font-weight: 400;
 }
-
+textarea + label {
+  top: calc(var(--input-group-height) / 2);
+}
 input:focus + label,
 input:not(:placeholder-shown) + label,
 select:focus + label,
@@ -79,4 +86,10 @@ textarea::placeholder {
 }
 input[type="text"] {
   padding-top: 20px;
+}
+
+input.oval,
+textarea.oval,
+select.oval {
+  border-radius: var(--input-group-border-radius-oval);
 }

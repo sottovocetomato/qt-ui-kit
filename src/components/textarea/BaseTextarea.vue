@@ -1,6 +1,6 @@
 <template>
-  <div class="input-wrap">
-    <input
+  <div class="textarea-wrap">
+    <textarea
       :class="[
         customClass || '',
         errorMessage ? 'error' : '',
@@ -9,13 +9,10 @@
       v-model="value"
       :maxlength="maxlength"
       :minlength="minlength"
-      :min="min"
-      :max="max"
-      :type="type"
+      :cols="width"
+      :rows="height"
       :disabled="disabled"
       :placeholder="placeholder"
-      maska
-      :data-maska="mask"
     />
     <label v-if="label">{{ label }}</label>
 
@@ -30,13 +27,12 @@ import { useField } from "vee-validate";
 import { defineProps } from "vue";
 
 interface InputProps {
-  type?: "text" | "number";
   variant?: "square" | "oval";
   name?: string;
+  width?: string;
+  height?: string;
   disabled?: boolean;
   placeholder?: string;
-  min?: string | number;
-  max?: string | number;
   maxlength?: string;
   minlength?: string;
   customClass?: string;
@@ -52,12 +48,11 @@ const {
   customClass = "",
   placeholder = "placeholder",
   variant = "square",
-  min = "",
-  max = "",
-  maxlength = "255",
+  maxlength = "",
   minlength = "",
-  mask = "",
   label = "Label",
+  width = "",
+  height = "",
 } = defineProps<InputProps>();
 
 const { value, errorMessage, setErrors } = useField(() => name, undefined, {

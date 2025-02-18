@@ -14,18 +14,14 @@
 
 /* border */
 :root {
-  --input-group-border: 2px solid var(--input-group-border-color);
-  --input-group-border-radius: 6px;
 }
 
 /* sizing */
 :root {
-  --input-group-padding: 20px;
-  --input-group-height: 64px;
-
   --spacer: 20px;
 
-  --font-xl: 24px;
-  --font-md: 18px;
-  --font-sm: 14px;
+  --font-xl: 2.4rem;
+  --font-md: 1.8rem;
+  --font-sm: 1.4rem;
+  --font-xs: 1.2rem;
 }
