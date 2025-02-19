@@ -11,7 +11,8 @@
   --input-group-height: 64px;
 }
 .input-wrap,
-.textarea-wrap {
+.textarea-wrap,
+.multiple-select {
   position: relative;
   color: var(--primary-color);
 }

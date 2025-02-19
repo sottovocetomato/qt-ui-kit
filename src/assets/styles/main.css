@@ -3,6 +3,7 @@
 @import "../fonts/fonts.css";
 @import "elements/button.css";
 @import "elements/inputs.css";
+@import "elements/multipleSelect.css";
 
 html,
 body {
@@ -32,73 +33,6 @@ body {
   font-size: var(--font-xl);
   font-weight: 600;
   margin-bottom: calc(var(--spacer) * 2);
-}
-
-.base-select {
-  background: url("./icons/chevron-down.svg") no-repeat right;
-  background-position-x: calc(100% - var(--spacer));
-}
-.base-select.list-open {
-  background: url("./icons/close.svg") no-repeat right;
-  background-size: 20px;
-  background-position-x: calc(100% - var(--spacer));
-}
-
-.base-select:hover {
-  cursor: pointer;
-}
-
-.base-select-list__option.selected:after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--primary-color-light);
-}
-
-.autocomplete-wrap label {
-  font-size: var(--font-md);
-  margin-bottom: 2rem;
-}
-.autocomplete-wrap input {
-  padding: 1.2rem;
-  border-radius: 1rem;
-  border: 1px solid #ccc;
-}
-.autocomplete-wrap input:focus {
-  outline: 1px solid #999898;
-}
-.autocomplete-list,
-.base-select-list {
-  position: absolute;
-  width: 100%;
-  height: 250px;
-  padding: var(--spacer) 0;
-  top: 85%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: var(--input-group-border);
-  overflow-y: scroll;
-  border-radius: 1rem;
-  z-index: 100;
-  background: white;
-}
-.base-select-list li p {
-  pointer-events: none;
-}
-.autocomplete-list li,
-.base-select-list li {
-  position: relative;
-  font-size: var(--font-sm);
-  font-weight: 500;
-  padding: 10px 20px;
-}
-.autocomplete-list li:hover,
-.base-select-list li:hover {
-  background-color: rgba(153, 152, 152, 0.15);
-  cursor: pointer;
 }
 
 .main-form .btn {

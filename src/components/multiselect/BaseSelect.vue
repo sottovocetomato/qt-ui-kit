@@ -1,28 +1,26 @@
 <template>
-  <div class="form-field">
+  <div class="multiple-select" ref="multiselect">
     <input
-      :class="[
-        'input-group base-select',
-        errorMessage ? 'input-group-error' : '',
-      ]"
+      :class="[errorMessage ? 'error' : '']"
       :value="optionsText"
       type="text"
-      id="base-select-input"
+      ref="multiselectInput"
+      id="multiple-select__input"
       :placeholder="placeholder"
       @click="toggleList"
       autocomplete="off"
       readonly
     />
-    <label for="base-select-input" v-if="label">{{ label }}</label>
+    <label for="multiple-select__input" v-if="label">{{ label }}</label>
     <span v-if="errorMessage" class="input-group-error__message">
       {{ errorMessage }}
     </span>
-    <div class="base-select-list" v-show="showList">
-      <ul>
+    <div class="multiple-select__content-wrap" v-show="showList">
+      <ul class="multiple-select__content-list">
         <li
           v-for="opt in options"
           :key="opt.value"
-          class="base-select-list__option"
+          class="multiple-select__content-list__option"
           @click="onOptionSelect(opt, $event)"
         >
           <p>{{ opt.text }}</p>
@@ -32,10 +30,25 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useField } from "vee-validate";
-import { ref, watch } from "vue";
+import { onMounted, ref, useTemplateRef, watch } from "vue";
+import { useClickOutside } from "../../composables/useClickOutside";
 
+interface MultipleSelectProps {
+  id?: string;
+  name?: string;
+  disabled?: boolean;
+  options?: [];
+  customClass?: string;
+  placeholder?: string;
+  label?: string;
+  multiple?: boolean;
+  modelValue?: string | number | object | [];
+}
+
+const multiselect = useTemplateRef("multiselect");
+const multiselectInput = useTemplateRef("multiselectInput");
 const model = defineModel();
 const {
   id = "select-input",
@@ -43,34 +56,28 @@ const {
   options = [],
   customClass = "",
   placeholder = "placeholder",
-  label = "",
+  label = "Label",
   multiple = false,
   disabled = false,
-} = defineProps({
-  id: String,
-  name: String,
-  disabled: Boolean,
-  options: Array,
-  customClass: String,
-  placeholder: String,
-  label: String,
-  multiple: Boolean,
-  modelValue: [String, Number, Object, Array],
-});
+} = defineProps<MultipleSelectProps>();
 
 const showList = ref(false);
 
 const optionsText = ref([]);
 
+useClickOutside(multiselect, toggleList);
+
 function toggleList(e) {
-  if (!e) return;
-  e.target.classList.toggle("list-open");
+  if (!multiselect.value) return;
+  if (!showList.value && !e.composedPath().includes(multiselectInput.value))
+    return;
+  multiselect.value.classList.toggle("list-open");
   showList.value = !showList.value;
 }
 
 function onOptionSelect(opt, e) {
   if (multiple) {
-    e.target.classList.toggle("selected");
+    multiselect.value.classList.toggle("selected");
     if (Array.isArray(value.value)) {
       if (value.value.includes(opt.value)) {
         value.value = value.value.filter((value) => value !== opt.value);
