@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { useField } from "vee-validate";
-import { computed, onMounted, ref, useTemplateRef, watch } from "vue";
+import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from "vue";
 import { useClickOutside } from "../../composables/useClickOutside";
 
 interface MultipleSelectProps {
@@ -117,8 +117,14 @@ function toggleList(e) {
   if (!multiselect.value) return;
   if (!showList.value && !e.composedPath().includes(multiselect.value)) return;
   console.log("toggling");
+
   multiselect.value.classList.toggle("list-open");
   showList.value = !showList.value;
+  nextTick(() => {
+    if (showList.value) {
+      multiselectInput.value.focus();
+    }
+  });
 }
 
 function onOptionSelect(opt, e) {
