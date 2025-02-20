@@ -27,6 +27,7 @@ export const useClickOutside = (
       return;
     }
     if (typeof callbackFn === "function") {
+      console.log("clicked outside");
       callbackFn(e);
     }
   };

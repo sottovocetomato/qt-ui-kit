@@ -1,10 +1,33 @@
 .multiple-select {
-  background: url("../../icons/chevron-down.svg") no-repeat right;
-  background-position-x: calc(100% - var(--spacer));
+  height: var(--input-group-height);
+  border: var(--input-group-border);
+  border-radius: var(--input-group-border-radius);
+  padding: 0 var(--input-group-padding);
+  font-size: var(--font-md);
+  color: var(--primary-color);
+  width: 100%;
+  margin-bottom: var(--spacer);
+  font-weight: 500;
+  user-select: none;
 }
-.multiple-select.list-open {
+.multiple-select input {
+  line-height: 50px;
+}
+.multiple-select__clear,
+.multiple-select__select {
+  height: 100%;
+  width: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.multiple-select__select {
   background: url("../../icons/close.svg") no-repeat right;
   background-size: 20px;
+  background-position-x: calc(100% - var(--spacer));
+}
+.multiple-select__clear {
+  background: url("../../icons/chevron-down.svg") no-repeat right;
   background-position-x: calc(100% - var(--spacer));
 }
 .multiple-select:hover {
@@ -38,7 +61,7 @@
   width: 100%;
   height: 250px;
   padding: var(--spacer) 0;
-  top: 85%;
+  top: var(--input-group-height);
   left: 50%;
   transform: translateX(-50%);
   border: var(--input-group-border);
@@ -62,3 +85,36 @@
   background-color: rgba(153, 152, 152, 0.15);
   cursor: pointer;
 }
+
+.multiple-select input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+  border-radius: 0;
+}
+.multiple-select label {
+  /* allows label to be absolute */
+  position: absolute;
+  top: 51%;
+  transform: translateY(-50%);
+  left: calc(var(--spacer));
+  font-size: var(--font-sm);
+  pointer-events: none;
+  transition: 0.3s;
+  font-weight: 400;
+}
+.multiple-select__selected {
+  font-size: var(--font-md);
+  line-height: 80px;
+}
+.multiple-select__selected + label {
+  top: 17px;
+}
+/*.multiple-select input:focus + label,*/
+/*.multiple-select input:not(:placeholder-shown) + label {*/
+/*  top: 17px;*/
+/*}*/

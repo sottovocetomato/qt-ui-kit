@@ -1,24 +1,39 @@
 <template>
-  <div class="multiple-select" ref="multiselect">
+  <div class="multiple-select" ref="multiselect" @click.self="toggleList">
     <input
-      :class="[errorMessage ? 'error' : '']"
-      :value="optionsText"
+      v-if="isInputShown"
+      :class="[errorMessage ? 'error' : '', variant ? `${variant}` : '']"
+      :value="search"
       type="text"
       ref="multiselectInput"
       id="multiple-select__input"
       :placeholder="placeholder"
-      @click="toggleList"
       autocomplete="off"
-      readonly
+      @input="onSearch"
+      @click.self="toggleList"
     />
+
+    <span
+      class="multiple-select__selected"
+      v-if="isSelectedShown"
+      @click="toggleList"
+    >
+      {{ optionsText }}
+    </span>
     <label for="multiple-select__input" v-if="label">{{ label }}</label>
+    <slot name="select-icon" v-if="search" @click="clearSearch">
+      <div class="multiple-select__select"></div>
+    </slot>
+    <slot name="clear-icon" v-if="!search" @click="toggleList">
+      <div class="multiple-select__clear"></div>
+    </slot>
     <span v-if="errorMessage" class="input-group-error__message">
       {{ errorMessage }}
     </span>
     <div class="multiple-select__content-wrap" v-show="showList">
       <ul class="multiple-select__content-list">
         <li
-          v-for="opt in options"
+          v-for="opt in filteredOptions"
           :key="opt.value"
           class="multiple-select__content-list__option"
           @click="onOptionSelect(opt, $event)"
@@ -32,7 +47,7 @@
 
 <script setup lang="ts">
 import { useField } from "vee-validate";
-import { onMounted, ref, useTemplateRef, watch } from "vue";
+import { computed, onMounted, ref, useTemplateRef, watch } from "vue";
 import { useClickOutside } from "../../composables/useClickOutside";
 
 interface MultipleSelectProps {
@@ -41,6 +56,7 @@ interface MultipleSelectProps {
   disabled?: boolean;
   options?: [];
   customClass?: string;
+  variant?: "square" | "oval";
   placeholder?: string;
   label?: string;
   multiple?: boolean;
@@ -59,25 +75,55 @@ const {
   label = "Label",
   multiple = false,
   disabled = false,
+  variant = "square",
 } = defineProps<MultipleSelectProps>();
 
 const showList = ref(false);
+const search = ref("");
+
+function normalizeStr(str) {
+  return String(str).toLowerCase().trim();
+}
+
+function clearSearch() {
+  search.value = "";
+}
+function onSearch(e) {
+  if (!e || !e.target) return;
+  search.value = e?.target?.value;
+}
 
 const optionsText = ref([]);
+
+const filteredOptions = computed(() => {
+  const searchStr = search.value || "";
+  const fo = options.filter((opt) =>
+    normalizeStr(opt.text).startsWith(searchStr)
+  );
+  return fo;
+});
+
+const isInputShown = computed(() => {
+  return showList.value || (!showList.value && !optionsText.value.length);
+});
+
+const isSelectedShown = computed(() => {
+  return !showList.value && optionsText.value.length && !search.value;
+});
 
 useClickOutside(multiselect, toggleList);
 
 function toggleList(e) {
   if (!multiselect.value) return;
-  if (!showList.value && !e.composedPath().includes(multiselectInput.value))
-    return;
+  if (!showList.value && !e.composedPath().includes(multiselect.value)) return;
+  console.log("toggling");
   multiselect.value.classList.toggle("list-open");
   showList.value = !showList.value;
 }
 
 function onOptionSelect(opt, e) {
   if (multiple) {
-    multiselect.value.classList.toggle("selected");
+    e.target.classList.toggle("selected");
     if (Array.isArray(value.value)) {
       if (value.value.includes(opt.value)) {
         value.value = value.value.filter((value) => value !== opt.value);
@@ -101,8 +147,9 @@ function onOptionSelect(opt, e) {
   } else {
     value.value = opt.value;
     optionsText.value = opt.text;
-    showList.value = false;
+    toggleList(e);
   }
+  clearSearch();
 }
 
 const { value, errorMessage } = useField(() => name);
