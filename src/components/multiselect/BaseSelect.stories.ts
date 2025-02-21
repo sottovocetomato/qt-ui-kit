@@ -45,6 +45,7 @@ export const DefaultInput: Story = {
       { text: "Прекрасная площадь 1х1м2", value: 5 },
     ],
   },
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };
 
 export const ValidationErrorInput: Story = {
