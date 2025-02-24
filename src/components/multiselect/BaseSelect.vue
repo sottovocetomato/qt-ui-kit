@@ -11,6 +11,7 @@
       autocomplete="off"
       @input="onSearch"
       @click.self="toggleList"
+      @keydown="(e) => toggleList(e, { searching: true })"
     />
 
     <span
@@ -117,7 +118,8 @@ const isSelectedShown = computed(() => {
 
 useClickOutside(multiselect, toggleList);
 
-function toggleList(e) {
+function toggleList(e, { searching } = {}) {
+  if (searching && showList.value) return;
   if (!multiselect.value) return;
   if (!showList.value && !e.composedPath().includes(multiselect.value)) return;
   console.log("toggling");
@@ -137,8 +139,8 @@ function editMultipleSelectedText(opt) {
     selectedText.value = selectedText.value.filter((text) => text !== opt.text);
   } else {
     selectedText.value.push(opt.text);
-    selectedText.value = selectedText.value.join(", ");
   }
+  selectedText.value = selectedText.value.join(", ");
 }
 
 function editMultipleValue(opt) {

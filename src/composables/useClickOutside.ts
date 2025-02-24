@@ -2,7 +2,8 @@ import { onBeforeUnmount, onMounted } from "vue";
 import type { Ref } from "vue";
 
 export type ClickOutsideCallbackFn = (
-  event?: PointerEvent | FocusEvent
+  event?: PointerEvent | FocusEvent,
+  params?: { searching?: boolean }
 ) => void;
 
 export const useClickOutside = (
