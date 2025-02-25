@@ -1,10 +1,12 @@
 :root {
-  --input-group-border-color: light-dark(#f7f8f8, #859cb25a);
+  /*--input-group-border-color: light-dark(#f7f8f8, #859cb25a);*/
+  --input-group-border-color: light-dark(#f1f1f1, #859cb25a);
+  --input-group-bg-color: light-dark(Canvas, rgba(155, 155, 155, 0.35));
   --input-group-border-color-focus: light-dark(
     #174b7c5a,
     rgba(98, 115, 131, 0.35)
   );
-  --input-group-border: 2px solid var(--input-group-border-color);
+  --input-group-border: 2px solid var(--input-group-border-color, GrayText);
   --input-group-border-radius: 6px;
   --input-group-border-radius-oval: 35px;
   --input-group-padding: 20px;
@@ -59,7 +61,9 @@ textarea {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-input + label,
+input[type="text"] + label,
+input[type="number"] + label,
+input[type="date"] + label,
 select + label,
 textarea + label {
   /* allows label to be absolute */
@@ -75,8 +79,13 @@ textarea + label {
 textarea + label {
   top: calc(var(--input-group-height) / 2);
 }
-input:focus + label,
-input:not(:placeholder-shown) + label,
+
+input[type="text"]:focus + label,
+input[type="text"]:not(:placeholder-shown) + label,
+input[type="number"]:focus + label,
+input[type="number"]:not(:placeholder-shown) + label,
+input[type="date"]:focus + label,
+input[type="date"]:not(:placeholder-shown) + label,
 select:focus + label,
 select:not(:placeholder-shown) + label,
 textarea:focus + label,
@@ -134,4 +143,64 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .range-inputs__inputs input + label {
   top: 39% !important;
+}
+
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  gap: 0.5rem;
+}
+input[type="checkbox"] {
+  --checkbox-border-w: calc(1em * (4 / 3) / 10);
+  --checkbox-accent: #0075ff;
+  --checkbox-bg-accent: light-dark(Field, transparent);
+  --checkbox-mask: url("../../icons/checkmark.svg");
+  appearance: none;
+  aspect-ratio: 1;
+  background: var(--input-group-bg-color, Field);
+  border: var(--checkbox-border-w) solid var(--input-group-border-color);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  font-size: var(--font-md);
+  /*margin: 0.1875em 0.1875em 0.1875em 0.25em;*/
+  position: relative;
+  width: var(--font-md);
+}
+
+input[type="checkbox"] + label {
+  font-size: var(--font-sm);
+}
+input[type="checkbox"]::after {
+  background: var(--checkbox-bg-accent, transparent);
+  content: "";
+  inset: -2px;
+  position: absolute;
+  mask: var(--checkbox-mask) no-repeat center / contain;
+  mask-size: 2rem;
+  -webkit-mask: var(--checkbox-mask) no-repeat center / contain;
+}
+input[type="checkbox"]:checked {
+  --input-group-bg-color: var(--checkbox-accent);
+  --checkbox-bg-accent: light-dark(Field, #f1f1f1);
+  --input-group-border-color: light-dark(
+    color-mix(in srgb, GrayText 10%, CanvasText 10%),
+    color-mix(in srgb, GrayText 60%, CanvasText 40%)
+  );
+}
+@media (hover: hover) {
+  input[type="checkbox"]:not(:checked):hover {
+    cursor: pointer;
+    --input-group-border-color: light-dark(
+      color-mix(in srgb, GrayText 20%, CanvasText 20%),
+      color-mix(in srgb, GrayText 60%, CanvasText 40%)
+    );
+  }
+  input[type="checkbox"]:checked:hover {
+    --input-group-bg-color: color-mix(
+      in srgb,
+      var(--checkbox-accent) 90%,
+      CanvasText 10%
+    );
+  }
 }

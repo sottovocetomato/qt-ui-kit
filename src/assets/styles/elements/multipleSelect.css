@@ -99,7 +99,7 @@
   margin: 0;
   border-radius: 0;
 }
-.multiple-select label {
+.multiple-select > #multiple-select__input + label {
   /* allows label to be absolute */
   position: absolute;
   top: 51%;
@@ -114,7 +114,7 @@
   font-size: var(--font-md);
   line-height: 80px;
 }
-.multiple-select.list-open > label,
+.multiple-select.list-open > #multiple-select__input + label,
 .multiple-select__selected + label {
   top: 17px;
 }
