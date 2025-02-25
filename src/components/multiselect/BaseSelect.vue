@@ -1,8 +1,15 @@
 <template>
-  <div class="multiple-select" ref="multiselect" @click.self="toggleList">
+  <div
+    ref="multiselect"
+    @click.self="toggleList"
+    :class="[
+      'multiple-select',
+      errorMessage ? 'error' : '',
+      variant ? `${variant}` : '',
+    ]"
+  >
     <input
       v-if="isInputShown"
-      :class="[errorMessage ? 'error' : '', variant ? `${variant}` : '']"
       :value="search"
       type="text"
       ref="multiselectInput"
@@ -28,7 +35,7 @@
     <slot name="clear-icon" v-if="search">
       <div class="multiple-select__clear" @click="clearSearch"></div>
     </slot>
-    <span v-if="errorMessage" class="input-group-error__message">
+    <span v-if="errorMessage" class="error-message">
       {{ errorMessage }}
     </span>
     <Transition name="multiple-select_list-fade">

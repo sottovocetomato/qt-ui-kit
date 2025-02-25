@@ -10,6 +10,7 @@
   font-weight: 500;
   user-select: none;
 }
+
 .multiple-select input {
   line-height: 50px;
 }
@@ -130,4 +131,8 @@
 .multiple-select_list-fade-enter-from,
 .multiple-select_list-fade-leave-to {
   opacity: 0;
+}
+
+.multiple-select .error-message {
+  bottom: -20px;
 }

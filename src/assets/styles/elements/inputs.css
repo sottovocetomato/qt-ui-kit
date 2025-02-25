@@ -39,18 +39,6 @@ input[type="date"]:focus,
 textarea:focus {
   outline-color: var(--input-group-border-color-focus);
 }
-input[type="text"].error,
-input[type="number"].error,
-input[type="date"].error,
-textarea.error {
-  border-color: var(--validation-error);
-}
-input[type="text"].error:focus,
-input[type="number"].error:focus,
-input[type="date"].error:focus,
-textarea.error:focus {
-  outline-color: var(--validation-error-focus);
-}
 
 input,
 select,
@@ -203,4 +191,11 @@ input[type="checkbox"]:checked {
       CanvasText 10%
     );
   }
+}
+
+.error {
+  border-color: var(--validation-error) !important;
+}
+.error:focus {
+  outline-color: var(--validation-error-focus);
 }

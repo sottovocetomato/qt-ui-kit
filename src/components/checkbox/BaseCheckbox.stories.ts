@@ -37,6 +37,7 @@ export const DefaultCheckbox: Story = {
     variant: "square",
     theme: ThemeType.LIGHT,
   },
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };
 
 export const DefaultCheckboxDarkTheme = {
@@ -63,4 +64,5 @@ export const ValidationErrorInput: Story = {
     variant: "primary",
     theme: ThemeType.LIGHT,
   },
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };

@@ -9,6 +9,7 @@ import {
 } from "../../config/storybook/ThemeDecorator";
 import { onMounted } from "vue";
 import { useForm } from "vee-validate";
+import { DefaultCheckbox } from "../checkbox/BaseCheckbox.stories";
 
 const meta: Meta<typeof BaseSelect> = {
   component: BaseSelect,
@@ -25,7 +26,7 @@ const meta: Meta<typeof BaseSelect> = {
 
 type Story = StoryObj<typeof BaseSelect>;
 export default meta;
-export const DefaultInput: Story = {
+export const DefaultSearchableSelect: Story = {
   render: (args) => ({
     components: { BaseSelect },
     setup() {
@@ -48,6 +49,11 @@ export const DefaultInput: Story = {
   decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };
 
+export const DefaultSearchableSelectDarkTheme = {
+  ...DefaultSearchableSelect,
+  decorators: [ThemeDecorator(ThemeType.DARK)],
+};
+
 export const ValidationErrorInput: Story = {
   render: (args) => ({
     components: { BaseSelect },
@@ -64,10 +70,11 @@ export const ValidationErrorInput: Story = {
       return { args, setFieldError, errors };
     },
 
-    template: `<BaseSelect v-bind="args" name="input"></BaseSelect>`,
+    template: `<BaseSelect v-bind="args" name="multiselect"></BaseSelect>`,
   }),
   args: {
     variant: "primary",
     theme: ThemeType.LIGHT,
   },
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };

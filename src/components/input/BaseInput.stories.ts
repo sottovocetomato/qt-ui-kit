@@ -9,6 +9,7 @@ import {
 } from "../../config/storybook/ThemeDecorator";
 import { onMounted } from "vue";
 import { useForm } from "vee-validate";
+import { PrimaryButton } from "../button/BaseButton.stories";
 
 const meta: Meta<typeof BaseInput> = {
   component: BaseInput,
@@ -41,8 +42,13 @@ export const DefaultInput: Story = {
   }),
   args: {
     variant: "square",
-    theme: ThemeType.LIGHT,
   },
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
+};
+
+export const DefaultInputDarkTheme = {
+  ...DefaultInput,
+  decorators: [ThemeDecorator(ThemeType.DARK)],
 };
 
 export const ValidationErrorInput: Story = {
@@ -63,6 +69,6 @@ export const ValidationErrorInput: Story = {
   }),
   args: {
     variant: "primary",
-    theme: ThemeType.LIGHT,
   },
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };
