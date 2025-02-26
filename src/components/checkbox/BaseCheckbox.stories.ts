@@ -31,7 +31,12 @@ export const DefaultCheckbox: Story = {
       return { args };
     },
 
-    template: `<BaseCheckbox v-bind="args" ></BaseCheckbox>`,
+    template: `<div style="display: flex; flex-direction: row; gap: 12px;">
+                  <BaseCheckbox v-bind="args" size="md" ></BaseCheckbox>
+                  <BaseCheckbox v-bind="args" size="lg"></BaseCheckbox> 
+                  <BaseCheckbox v-bind="args" size="xl"></BaseCheckbox> 
+                </div>
+          `,
   }),
   args: {
     variant: "square",
@@ -50,15 +55,15 @@ export const ValidationErrorInput: Story = {
     setup() {
       const { setFieldError, errors } = useForm({
         initialValues: {
-          input: "",
+          checkbox: "",
         },
       });
-      onMounted(() => setFieldError("input", "This field cannot be empty!"));
+      onMounted(() => setFieldError("checkbox", "This field cannot be empty!"));
 
       return { args, setFieldError, errors };
     },
 
-    template: `<BaseCheckbox v-bind="args" name="input"></BaseCheckbox>`,
+    template: `<BaseCheckbox v-bind="args" name="checkbox"></BaseCheckbox>`,
   }),
   args: {
     variant: "primary",

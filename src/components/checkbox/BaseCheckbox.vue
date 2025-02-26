@@ -1,27 +1,42 @@
 <template>
   <div class="checkbox-wrap">
     <template v-if="!group">
-      <input
-        :class="[customClass || '', errorMessage ? 'error' : '']"
-        v-model="value"
-        type="checkbox"
-        :disabled="disabled"
-      />
-      <label v-if="label">{{ label }}</label>
+      <label
+        :class="[
+          customClass || '',
+          errorMessage ? 'error' : '',
+          size ? `checkbox-${size}` : '',
+        ]"
+      >
+        <input
+          v-model="value"
+          type="checkbox"
+          :disabled="disabled"
+          :class="[errorMessage ? 'error' : '']"
+        />
+        <span v-if="label">{{ label }}</span></label
+      >
     </template>
     <div class="checkbox-group" v-else>
-      <div v-for="(checkbox, ind) in checkboxGroup">
+      <label
+        v-for="(checkbox, ind) in checkboxGroup"
+        :for="`${checkbox.label}-${ind}`"
+        v-if="label"
+        :class="[
+          customClass || '',
+          errorMessage ? 'error' : '',
+          size ? `checkbox-${size}` : '',
+        ]"
+      >
         <input
-          :class="[customClass || '', errorMessage ? 'error' : '']"
+          :class="[errorMessage ? 'error' : '']"
           v-model="value"
           :id="`${checkbox.label}-${ind}`"
           type="checkbox"
           :disabled="disabled"
         />
-        <label :for="`${checkbox.label}-${ind}`" v-if="label">{{
-          label
-        }}</label>
-      </div>
+        <span v-if="label"> {{ label }}</span></label
+      >
     </div>
     <span v-if="errorMessage" class="error-message">
       {{ errorMessage }}
@@ -44,6 +59,7 @@ interface CheckboxProps {
   customClass?: string;
   mask?: string;
   label?: string;
+  size?: "md" | "lg" | "xl";
   modelValue?: string | object;
   group?: boolean;
   checkboxGroup?: [];
@@ -61,6 +77,7 @@ const {
   mask = "",
   checkboxGroup = [],
   group = false,
+  size = "md",
   label = "Label",
 } = defineProps<CheckboxProps>();
 

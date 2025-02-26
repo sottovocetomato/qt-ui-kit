@@ -24,7 +24,8 @@
 :root {
   --spacer: 20px;
 
-  --font-xl: 2.4rem;
+  --font-xl: 2.6rem;
+  --font-lg: 2.1rem;
   --font-md: 1.8rem;
   --font-sm: 1.4rem;
   --font-xs: 1.2rem;
