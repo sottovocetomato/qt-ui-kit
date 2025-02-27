@@ -6,6 +6,7 @@
       variant ? `btn-${variant}` : '',
       customClass,
     ]"
+    v-ripple
     :disabled="disabled"
     :type="type"
   >

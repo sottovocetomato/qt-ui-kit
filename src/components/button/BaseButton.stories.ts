@@ -29,7 +29,7 @@ export const PrimaryButton: Story = {
     template: `
       <div style="display: flex; flex-direction: row; gap: 12px;">
         <BaseButton v-bind="args" size="sm">Button</BaseButton>
-        <BaseButton v-bind="args" size="md">Button</BaseButton>
+        <BaseButton v-bind="args" size="md" >Button</BaseButton>
         <BaseButton v-bind="args" size="lg">Button</BaseButton>
       </div>
     `,

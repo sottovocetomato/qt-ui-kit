@@ -13,6 +13,19 @@ body {
   font-family: Montserrat, system-ui;
 }
 
+h1 {
+  font-size: var(--font-xxl);
+}
+h2 {
+  font-size: var(--font-xl);
+}
+h3 {
+  font-size: var(--font-lg);
+}
+h4,
+h5 {
+  font-size: var(--font-md);
+}
 .main-wrap {
   height: 100vh;
 }

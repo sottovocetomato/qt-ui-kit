@@ -4,7 +4,7 @@
       <div class="modal-wrap">
         <div class="modal__header">
           <slot name="header">
-            <h3>This is modal's header!</h3>
+            <h2>This is modal's header!</h2>
           </slot>
         </div>
         <div class="modal__content">
