@@ -3,6 +3,7 @@
     :class="[
       'btn',
       size ? `btn-${size}` : '',
+      shape ? `btn-${shape}` : '',
       variant ? `btn-${variant}` : '',
       customClass,
     ]"
@@ -22,6 +23,7 @@ interface ButtonProps {
   customClass?: string;
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "secondary" | "danger";
+  shape: "oval" | "square";
   disabled?: boolean;
 }
 
@@ -31,6 +33,7 @@ const {
   size = "md",
   customClass = "",
   variant = "primary",
+  shape = "square",
 } = defineProps<ButtonProps>();
 </script>
 

@@ -4,6 +4,7 @@
 @import "elements/button.css";
 @import "elements/inputs.css";
 @import "elements/multipleSelect.css";
+@import "elements/modal.css";
 
 html,
 body {

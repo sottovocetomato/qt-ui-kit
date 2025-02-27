@@ -1,29 +1,31 @@
 <template>
   <Teleport :to="teleport">
     <Transition name="modal">
-      <div class="modal-wrap">
-        <div class="modal__header">
-          <slot name="header">
-            <h2>This is modal's header!</h2>
-          </slot>
-        </div>
-        <div class="modal__content">
-          <slot name="content">
-            <p>This is modal's fallback content if no content was provided</p>
-          </slot>
-        </div>
-        <div class="modal__controls">
-          <slot name="controls">
-            <BaseButton variant="primary" @click="okAction">Ok</BaseButton>
-            <BaseButton variant="danger" @click="cancelAction"
-              >Cancel</BaseButton
-            >
-          </slot>
-        </div>
-        <div class="modal__close" @click="onClose">
-          <slot name="close-icon">
-            <IconClose />
-          </slot>
+      <div class="modal">
+        <div class="modal-wrap">
+          <div class="modal__header">
+            <slot name="header">
+              <h2>This is modal's header!</h2>
+            </slot>
+          </div>
+          <div class="modal__content">
+            <slot name="content">
+              <p>This is modal's fallback content if no content was provided</p>
+            </slot>
+          </div>
+          <div class="modal__controls">
+            <slot name="controls">
+              <BaseButton variant="primary" @click="okAction">Ok</BaseButton>
+              <BaseButton variant="danger" @click="cancelAction"
+                >Cancel
+              </BaseButton>
+            </slot>
+          </div>
+          <div class="modal__close" @click="onClose">
+            <slot name="close-icon">
+              <IconClose />
+            </slot>
+          </div>
         </div>
         <div class="modal__backdrop"></div>
       </div>
