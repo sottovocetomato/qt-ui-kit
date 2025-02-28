@@ -24,8 +24,15 @@ h3 {
   font-size: var(--font-lg);
 }
 h4,
-h5 {
+h5,
+p,
+span {
   font-size: var(--font-md);
+}
+
+hr {
+  margin: var(--spacer) 0 var(--spacer) 0;
+  border-top: 1px solid #f9f9f9;
 }
 .main-wrap {
   height: 100vh;

@@ -36,7 +36,7 @@ export const DefaultModal: Story = {
     template: `
       <div>
         <BaseButton @click="basicModal.toggleModal">Open Modal</BaseButton>
-        <BaseModal v-if="basicModal.isOpen.value" v-bind="args" @close="basicModal.toggleModal"></BaseModal>
+        <BaseModal :show="basicModal.isOpen.value" v-bind="args" @close="basicModal.toggleModal"></BaseModal>
       </div>`,
   }),
   args: {
