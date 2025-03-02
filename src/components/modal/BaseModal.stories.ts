@@ -45,10 +45,10 @@ export const DefaultModal: Story = {
   decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };
 
-// export const DefaultInputDarkTheme = {
-//   ...DefaultInput,
-//   decorators: [ThemeDecorator(ThemeType.DARK)],
-// };
+export const DefaultModalDarkTheme = {
+  ...DefaultModal,
+  decorators: [ThemeDecorator(ThemeType.DARK)],
+};
 //
 // export const ValidationErrorInput: Story = {
 //   render: (args) => ({

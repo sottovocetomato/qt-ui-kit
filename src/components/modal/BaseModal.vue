@@ -10,26 +10,6 @@
         <div class="modal__content">
           <slot name="content">
             <p>This is modal's fallback content if no content was provided</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Dignissimos, eveniet, quia! Adipisci ducimus eaque provident
-              quibusdam quisquam. Aliquid amet aspernatur beatae consectetur
-              culpa deserunt dolorum enim est et fuga fugit iusto laudantium,
-              libero magni possimus quia recusandae repellendus tempora voluptas
-              voluptate. Ad amet aut consequuntur delectus doloribus enim et eum
-              eveniet ex facere illo ipsa ipsum laboriosam libero maiores maxime
-              minima, modi nesciunt obcaecati officiis quaerat quam quasi quod
-              quos ratione recusandae sed sint suscipit veritatis vitae?
-              Aperiam, architecto at error perferendis quia quo rerum! Amet
-              animi asperiores assumenda blanditiis cupiditate delectus deleniti
-              doloribus error est eum ex expedita facilis in ipsam ipsum labore
-              laborum magni maxime minima modi nam nulla optio, pariatur quaerat
-              qui quibusdam quis ratione similique suscipit unde ut veniam
-              voluptatibus voluptatum? Ad alias animi cupiditate dolore ducimus
-              earum expedita iusto labore laborum optio pariatur perspiciatis,
-              quae quidem quos ratione rerum, vel veritatis vitae, voluptas
-              voluptatum! Odio!
-            </p>
           </slot>
         </div>
         <div :class="['modal__controls', controlsPosition]">
@@ -80,6 +60,7 @@ function okAction() {
 }
 function cancelAction() {
   emit("cancel");
+  emit("close");
 }
 function onClose() {
   emit("close");

@@ -1,0 +1,17 @@
+.toasters-wrap {
+  width: 350px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.toast {
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  padding: var(--spacer);
+}

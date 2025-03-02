@@ -5,6 +5,7 @@
 @import "elements/inputs.css";
 @import "elements/multipleSelect.css";
 @import "elements/modal.css";
+@import "elements/toaster.css";
 
 html,
 body {
