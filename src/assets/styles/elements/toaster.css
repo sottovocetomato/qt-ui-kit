@@ -4,14 +4,110 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacer);
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: var(--spacer);
+  right: var(--spacer);
+  z-index: 800;
 }
 .toast {
   width: 100%;
   height: 150px;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
-  padding: var(--spacer);
+  padding: calc(var(--spacer) / 2);
+  overflow: hidden;
+  position: relative;
+}
+.toast:hover {
+  cursor: pointer;
+}
+.toast p {
+  font-size: var(--font-sm);
+}
+.toast progress {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 10px;
+  border-radius: 0px;
+}
+.toast progress[value]::-webkit-progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  transition: width 300ms ease;
+}
+.toast progress[value]::-webkit-progress-value {
+  width: 0%;
+  background-color: var(--primary-color);
+  transition: width 300ms ease;
+}
+.toast progress::-moz-progress-bar {
+  border: none;
+  height: 10px;
+  background-color: var(--primary-color);
+  transition: width 300ms ease;
+}
+.toast__close {
+  position: absolute;
+  width: 24px;
+  aspect-ratio: 1;
+  top: 0px;
+  right: 0px;
+  z-index: 1001;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+.toast__close:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.toast__content {
+  width: 100%;
+  /*height: 80px;*/
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  display: -webkit-box;
+}
+.toast.bg-primary {
+  background-color: var(--bg-primary);
+}
+.toast.bg-danger {
+  background-color: var(--bg-danger);
+  progress[value]::-webkit-progress-value {
+    background-color: var(--danger-color);
+  }
+  progress::-moz-progress-bar {
+    background-color: var(--danger-color);
+  }
+}
+.toast.bg-warning {
+  background-color: var(--bg-warning);
+  progress[value]::-webkit-progress-value {
+    background-color: var(--warning-color);
+  }
+  progress::-moz-progress-bar {
+    background-color: var(--warning-color);
+  }
+}
+
+.toaster-enter-active,
+.toaster-leave-active {
+  transition: all 0.5s ease;
+}
+.toaster-enter-from,
+.toaster-leave-to {
+  opacity: 0;
+  transform: translateX(80px);
 }

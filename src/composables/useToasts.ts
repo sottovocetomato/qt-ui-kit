@@ -15,37 +15,48 @@ interface Toasts {
 
 const toasts = ref<Toasts>([]);
 
-export const useToasts = (timeout = 600) => {
+export const useToasts = (timeout = 300) => {
   function addToast({ title = "", message = "", variant = "primary" }) {
     const id = generateUID();
     const showTimeout = ref(timeout);
+    const isPaused = ref(false);
     const toast = {
       title,
       message,
       variant,
       timeout: showTimeout,
       id,
-      timeoutId: setToasterVisibilityInterval(showTimeout, id),
+      paused: isPaused,
+      timeoutId: setToasterVisibilityInterval(showTimeout, id, isPaused),
     };
-    toasts.value.push(toast);
+    toasts.value.unshift(toast);
   }
 
   function getToasts() {
     return toasts;
   }
 
-  function setToasterVisibilityInterval(timeout, id) {
+  function toggleToasterPause(toast) {
+    toast.paused = !toast.paused;
+  }
+  function removeToast(id) {
+    toasts.value = toasts.value.filter((t) => t.id !== id);
+  }
+
+  function setToasterVisibilityInterval(timeout, id, isPaused) {
     const timeoutId = setInterval(() => {
+      if (isPaused.value) {
+        return;
+      }
       if (timeout.value > 0) {
         timeout.value--;
       } else {
         clearInterval(timeoutId);
-        toasts.value = toasts.value.filter((t) => t.id !== id);
-        console.log(toasts.value, "toasts.value after removal of toast");
+        removeToast(id);
       }
     }, 60);
     return timeoutId;
   }
 
-  return { addToast, getToasts };
+  return { addToast, getToasts, toggleToasterPause, removeToast };
 };
