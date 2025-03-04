@@ -1,5 +1,6 @@
 @import "reset.css";
 @import "vars.css";
+@import "utilities.css";
 @import "../fonts/fonts.css";
 @import "elements/button.css";
 @import "elements/inputs.css";

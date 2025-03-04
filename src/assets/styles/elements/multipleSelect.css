@@ -4,7 +4,7 @@
   border-radius: var(--input-group-border-radius);
   padding: 0 var(--input-group-padding);
   font-size: var(--font-md);
-  color: var(--primary-color);
+  color: var(--main-font-color);
   width: 100%;
   margin-bottom: var(--spacer);
   font-weight: 500;

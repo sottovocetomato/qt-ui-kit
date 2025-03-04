@@ -1,0 +1,10 @@
+.bg-primary {
+  background-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
+}
+
+.bg-danger {
+  background-color: color-mix(in srgb, var(--danger-color) 30%, transparent);
+}
+.bg-warning {
+  background-color: color-mix(in srgb, var(--warning-color) 30%, transparent);
+}

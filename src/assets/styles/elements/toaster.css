@@ -80,11 +80,8 @@
   line-clamp: 4;
   display: -webkit-box;
 }
-.toast.bg-primary {
-  background-color: var(--bg-primary);
-}
+
 .toast.bg-danger {
-  background-color: var(--bg-danger);
   progress[value]::-webkit-progress-value {
     background-color: var(--danger-color);
   }
@@ -93,7 +90,6 @@
   }
 }
 .toast.bg-warning {
-  background-color: var(--bg-warning);
   progress[value]::-webkit-progress-value {
     background-color: var(--warning-color);
   }

@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <BaseToaster />
-    <BaseButton @click="addToasts" />
+    <BaseButton @click="addToasts" style="margin-bottom: 5px"
+      >Add Toast</BaseButton
+    >
+    <BaseButton @click="addToasts" variant="danger" style="margin-bottom: 5px"
+      >Add Toast</BaseButton
+    >
+    <BaseButton @click="addToasts" variant="warning">Add Toast</BaseButton>
   </div>
 </template>
 

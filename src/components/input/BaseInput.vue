@@ -18,7 +18,9 @@
       :data-maska="mask"
     />
     <label v-if="label">{{ label }}</label>
-
+    <span v-if="withCounter" class="character-counter">
+      {{ value?.length ?? 0 }}/{{ maxlength }}
+    </span>
     <span v-if="errorMessage" class="error-message">
       {{ errorMessage }}
     </span>
@@ -34,6 +36,7 @@ interface InputProps {
   variant?: "square" | "oval";
   name?: string;
   disabled?: boolean;
+  withCounter?: boolean;
   placeholder?: string;
   min?: string | number;
   max?: string | number;
@@ -51,6 +54,7 @@ const {
   disabled = false,
   customClass = "",
   placeholder = "placeholder",
+  withCounter = true,
   variant = "square",
   min = "",
   max = "",

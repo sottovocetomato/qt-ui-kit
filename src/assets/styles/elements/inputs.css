@@ -2,21 +2,26 @@
   /*--input-group-border-color: light-dark(#f7f8f8, #859cb25a);*/
   --input-group-border-color: light-dark(#f1f1f1, #859cb25a);
   --input-group-bg-color: light-dark(Canvas, rgba(155, 155, 155, 0.35));
-  --input-group-border-color-focus: light-dark(
-    #174b7c5a,
-    rgba(98, 115, 131, 0.35)
-  );
+  --input-group-border-color-focus: light-dark(#174b7c5a, #62738359);
   --input-group-border: 2px solid var(--input-group-border-color, GrayText);
   --input-group-border-radius: 6px;
   --input-group-border-radius-oval: 35px;
   --input-group-padding: 20px;
   --input-group-height: 64px;
 }
+.character-counter {
+  font-size: var(--font-sm);
+  text-align: right;
+  display: block;
+  color: GrayText;
+  opacity: 0.4;
+}
+
 .input-wrap,
 .textarea-wrap,
 .multiple-select {
   position: relative;
-  color: var(--primary-color);
+  color: var(--main-font-color);
 }
 input[type="text"],
 input[type="number"],
@@ -27,7 +32,7 @@ textarea {
   border-radius: var(--input-group-border-radius);
   padding: 0 var(--input-group-padding);
   font-size: var(--font-md);
-  color: var(--primary-color);
+  color: var(--main-font-color);
   line-height: 50px;
   font-weight: 500;
   width: 100%;
@@ -36,8 +41,13 @@ textarea {
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="date"]:focus,
-textarea:focus {
-  outline-color: var(--input-group-border-color-focus);
+textarea:focus,
+input[type="text"]:focus-visible,
+input[type="number"]:focus-visible,
+input[type="date"]:focus-visible,
+textarea:focus-visible {
+  outline-color: light-dark(#174b7c5a, #62738359) !important;
+  /*outline: 2px inset var(--input-group-border-color-focus);*/
 }
 
 input,
@@ -59,7 +69,7 @@ textarea + label {
   top: 39%;
   transform: translateY(-50%);
   left: calc(var(--spacer) + 2px);
-  font-size: var(--font-sm);
+  font-size: var(--font-md);
   pointer-events: none;
   transition: 0.3s;
   font-weight: 400;
@@ -109,7 +119,7 @@ select.oval {
 .range-inputs__label {
   display: inline-block;
   font-size: var(--font-sm);
-  color: var(--primary-color);
+  color: var(--main-font-color);
   margin-bottom: var(--spacer);
 }
 
@@ -135,10 +145,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .checkbox-wrap {
   position: relative;
+  line-height: 1;
   label {
     display: flex;
     align-items: center;
-    color: var(--primary-color);
+    color: var(--main-font-color);
     gap: 0.5rem;
     position: relative;
   }
@@ -149,7 +160,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 input[type="checkbox"] {
   --checkbox-border-w: calc(1em * (4 / 3) / 10);
-  --checkbox-accent: #0075ff;
+  --checkbox-accent: var(--primary-color);
   --checkbox-bg-accent: light-dark(Field, transparent);
   --checkbox-mask: url("../../icons/checkmark.svg");
   appearance: none;
@@ -167,6 +178,7 @@ input[type="checkbox"] {
 input[type="checkbox"] + label {
   font-size: var(--font-sm);
 }
+
 input[type="checkbox"]::after {
   background: var(--checkbox-bg-accent, transparent);
   content: "";
@@ -192,11 +204,15 @@ input[type="checkbox"]:checked {
     );
   }
   input[type="checkbox"]:checked:hover {
+    cursor: pointer;
     --input-group-bg-color: color-mix(
       in srgb,
       var(--checkbox-accent) 90%,
-      CanvasText 10%
+      transparent
     );
+  }
+  .checkbox-wrap label:hover {
+    cursor: pointer;
   }
 }
 

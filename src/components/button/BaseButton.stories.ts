@@ -12,6 +12,10 @@ const meta: Meta<typeof BaseButton> = {
   argTypes: {
     disabled: { control: { type: "boolean" } },
     shape: { controls: { type: "radio" }, options: ["square", "oval"] },
+    variant: {
+      controls: { type: "radio" },
+      options: ["primary", "warning", "danger"],
+    },
     size: { controls: { type: "radio" }, options: ["sm", "md", "lg"] },
     customClass: { control: "text" },
   },
@@ -21,7 +25,7 @@ type Story = StoryObj<typeof BaseButton>;
 console.log(ThemeType.LIGHT);
 export const PrimaryButton: Story = {
   args: {
-    shape: "oval"
+    shape: "oval",
   },
 
   render: (args) => ({
@@ -40,7 +44,7 @@ export const PrimaryButton: Story = {
     `,
   }),
 
-  decorators: [ThemeDecorator(ThemeType.LIGHT)]
+  decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };
 
 export const SecondaryButton = {

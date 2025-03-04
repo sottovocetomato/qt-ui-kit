@@ -1,23 +1,28 @@
 /* colors */
 :root {
   color-scheme: light dark;
-  --bg-color-main: light-dark(Canvas, #212121);
-  --primary-color: light-dark(#174b7c, #174b7c);
-  --secondary-color: light-dark(#6f8898, #5d7e9b);
+
+  --primary-color: #174b7c;
+  --danger-color: #862823;
+  --warning-color: #dca11c;
+  --dark-theme-font-color: #547bb1;
+
+  --main-font-color: light-dark(
+    var(--primary-color),
+    var(--dark-theme-font-color)
+  );
+
+  --header-color: light-dark(#1a263d, #1a263d);
+  --bg-color-main: light-dark(Canvas, #1d1e21);
+  --secondary-color: light-dark(#a3abbd, #a3abbd);
   --primary-color-darker: light-dark(#133c64, #133c64);
   --primary-color-light: light-dark(
     rgba(23, 75, 124, 0.28),
     rgba(23, 75, 124, 0.28)
   );
-  --header-color: light-dark(#1a263d, #1a263d);
-  --danger-color: light-dark(#861616, #861616);
-  --warning-color: light-dark(#d3ae19, #d3ae19);
+
   --validation-error: light-dark(#fa8888, #fa8888);
   --validation-error-focus: light-dark(#fa4040, #fa8888);
-
-  --bg-danger: rgba(255, 0, 0, 0.3);
-  --bg-warning: rgba(211, 174, 25, 0.3);
-  --bg-primary: rgba(23, 75, 124, 0.15);
 
   --box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
 }
