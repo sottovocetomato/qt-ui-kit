@@ -14,7 +14,6 @@ const meta: Meta<typeof BaseCheckbox> = {
   component: BaseCheckbox,
   argTypes: {
     name: { control: { type: "text" } },
-    type: { control: { type: "radio" }, options: ["number", "text"] },
     variant: { control: { type: "radio" }, options: ["square", "oval"] },
     disabled: { control: { type: "boolean" } },
     label: { control: { type: "text" } },
@@ -39,7 +38,6 @@ export const DefaultCheckbox: Story = {
           `,
   }),
   args: {
-    variant: "square",
     theme: ThemeType.LIGHT,
   },
   decorators: [ThemeDecorator(ThemeType.LIGHT)],
@@ -66,7 +64,6 @@ export const ValidationErrorInput: Story = {
     template: `<BaseCheckbox v-bind="args" name="checkbox"></BaseCheckbox>`,
   }),
   args: {
-    variant: "primary",
     theme: ThemeType.LIGHT,
   },
   decorators: [ThemeDecorator(ThemeType.LIGHT)],

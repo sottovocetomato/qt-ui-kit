@@ -60,7 +60,7 @@ const {
   label = "Label",
 } = defineProps<InputProps>();
 
-const { value, errorMessage, setErrors } = useField(() => name, undefined, {
+const { value, errorMessage } = useField(() => name, undefined, {
   syncVModel: true,
 });
 </script>

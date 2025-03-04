@@ -1,6 +1,3 @@
-import type { Meta, StoryFn } from "@storybook/vue3";
-import BaseButton from "../../components/button/BaseButton.vue";
-
 export enum ThemeType {
   DARK = "dark",
   LIGHT = "light",

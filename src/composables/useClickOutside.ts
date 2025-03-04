@@ -2,8 +2,8 @@ import { onBeforeUnmount, onMounted } from "vue";
 import type { Ref } from "vue";
 
 export type ClickOutsideCallbackFn = (
-  event?: PointerEvent | FocusEvent,
-  params?: { searching?: boolean }
+  e: PointerEvent | FocusEvent | Event,
+  ...args: any[]
 ) => void;
 
 export const useClickOutside = (
@@ -18,11 +18,12 @@ export const useClickOutside = (
   if (typeof window === "undefined" || !window) {
     throw new Error("Window object doesn't exist");
   }
-  const listener = (e) => {
+  const listener = (e: Event) => {
+    const eTarget = e.target as HTMLElement;
     if (
-      e.target === target.value ||
+      eTarget === target.value ||
       e.composedPath().includes(target.value) ||
-      e.target === excludeComponent?.value ||
+      eTarget === excludeComponent?.value ||
       e.composedPath().includes(excludeComponent?.value)
     ) {
       return;

@@ -36,7 +36,6 @@
 <script setup lang="ts">
 import BaseButton from "../button/BaseButton.vue";
 import IconClose from "../../assets/icons/IconClose.vue";
-import useModal from "../../composables/useModal";
 
 interface ModalDialogProps {
   teleport?: string;

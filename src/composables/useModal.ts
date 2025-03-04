@@ -11,9 +11,9 @@ export interface ModalsList {
 }
 
 const useModal = (names: string[] = []) => {
-  const modalsList = ref({});
+  const modalsList = ref<ModalsList>({});
 
-  function initModal(name) {
+  function initModal(name: string) {
     const modalId = generateUID();
     const isOpen = ref(false);
 

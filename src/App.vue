@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
 import ThemesLayout from "./components/layouts/ThemesLayout.vue";
 import UiKit from "./components/UiKit.vue";
 </script>

@@ -33,7 +33,8 @@
           v-model="value"
           :id="`${checkbox.label}-${ind}`"
           type="checkbox"
-          :disabled="disabled"
+          :disabled="checkbox?.disabled"
+          :value="checkbox.value || checkbox.label"
         />
         <span v-if="label"> {{ label }}</span></label
       >
@@ -48,40 +49,34 @@
 import { useField } from "vee-validate";
 import { defineProps } from "vue";
 
+interface checkboxObj {
+  label: string;
+  value: string | number;
+  disabled?: boolean;
+}
+
 interface CheckboxProps {
   name?: string;
   disabled?: boolean;
-  placeholder?: string;
-  min?: string | number;
-  max?: string | number;
-  maxlength?: string;
-  minlength?: string;
   customClass?: string;
-  mask?: string;
   label?: string;
   size?: "md" | "lg" | "xl";
   modelValue?: string | object;
   group?: boolean;
-  checkboxGroup?: [];
+  checkboxGroup?: checkboxObj[];
 }
 
 const {
   name = "",
   disabled = false,
   customClass = "",
-  placeholder = "placeholder",
-  min = "",
-  max = "",
-  maxlength = "255",
-  minlength = "",
-  mask = "",
   checkboxGroup = [],
   group = false,
   size = "md",
   label = "Label",
 } = defineProps<CheckboxProps>();
 
-const { value, errorMessage, setErrors } = useField(() => name, undefined, {
+const { value, errorMessage } = useField(() => name, undefined, {
   syncVModel: true,
 });
 </script>

@@ -9,7 +9,6 @@ import {
 } from "../../config/storybook/ThemeDecorator";
 import { onMounted } from "vue";
 import { useForm } from "vee-validate";
-import { PrimaryButton } from "../button/BaseButton.stories";
 
 const meta: Meta<typeof BaseInput> = {
   component: BaseInput,
@@ -67,8 +66,6 @@ export const ValidationErrorInput: Story = {
 
     template: `<BaseInput v-bind="args" name="input"></BaseInput>`,
   }),
-  args: {
-    variant: "primary",
-  },
+  args: {},
   decorators: [ThemeDecorator(ThemeType.LIGHT)],
 };

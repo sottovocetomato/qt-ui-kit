@@ -9,7 +9,6 @@ import {
 } from "../../config/storybook/ThemeDecorator";
 import { onMounted } from "vue";
 import { useForm } from "vee-validate";
-import { DefaultCheckbox } from "../checkbox/BaseCheckbox.stories";
 
 const meta: Meta<typeof BaseSelect> = {
   component: BaseSelect,

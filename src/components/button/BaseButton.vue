@@ -9,7 +9,6 @@
     ]"
     v-ripple
     :disabled="disabled"
-    :type="type"
   >
     <slot></slot>
   </button>
@@ -19,17 +18,15 @@
 import { defineProps } from "vue";
 
 interface ButtonProps {
-  type?: string;
   customClass?: string;
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "secondary" | "danger";
-  shape: "oval" | "square";
+  shape?: "oval" | "square";
   disabled?: boolean;
 }
 
 const {
   disabled = false,
-  type = "button",
   size = "md",
   customClass = "",
   variant = "primary",

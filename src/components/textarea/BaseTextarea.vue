@@ -43,7 +43,6 @@ interface InputProps {
 
 const {
   name = "",
-  type = "text",
   disabled = false,
   customClass = "",
   placeholder = "placeholder",
@@ -55,7 +54,7 @@ const {
   height = "",
 } = defineProps<InputProps>();
 
-const { value, errorMessage, setErrors } = useField(() => name, undefined, {
+const { value, errorMessage } = useField(() => name, undefined, {
   syncVModel: true,
 });
 </script>

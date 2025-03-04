@@ -8,9 +8,6 @@ import {
   ThemeDecorator,
   ThemeType,
 } from "../../config/storybook/ThemeDecorator";
-import { onMounted } from "vue";
-import { useForm } from "vee-validate";
-import { PrimaryButton } from "../button/BaseButton.stories";
 import useModal from "../../composables/useModal";
 import type { ModalsList } from "../../composables/useModal";
 

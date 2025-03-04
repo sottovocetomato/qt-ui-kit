@@ -2,25 +2,31 @@ import { ref } from "vue";
 import type { Ref } from "vue";
 import generateUID from "../helpers/uuid";
 
-interface Toasts {
-  [key: number]: {
-    title: string;
-    message: string;
-    variant: "primary" | "danger" | "warning";
-    id: number | string;
-    timeout: number;
-    timeoutId: number;
-  };
+interface BaseToastParams {
+  title: string;
+  message: string;
+  variant?: "primary" | "danger" | "warning";
 }
 
-const toasts = ref<Toasts>([]);
+interface Toast extends BaseToastParams {
+  id: number | string;
+  timeout: Ref;
+  timeoutId: number;
+  paused: Ref | boolean;
+}
+
+const toasts = ref<Toast[]>([]);
 
 export const useToasts = (timeout = 300) => {
-  function addToast({ title = "", message = "", variant = "primary" }) {
+  function addToast({
+    title = "",
+    message = "",
+    variant = "primary",
+  }: BaseToastParams) {
     const id = generateUID();
     const showTimeout = ref(timeout);
     const isPaused = ref(false);
-    const toast = {
+    const toast: Toast = {
       title,
       message,
       variant,
@@ -36,14 +42,18 @@ export const useToasts = (timeout = 300) => {
     return toasts;
   }
 
-  function toggleToasterPause(toast) {
+  function toggleToasterPause(toast: Toast) {
     toast.paused = !toast.paused;
   }
-  function removeToast(id) {
-    toasts.value = toasts.value.filter((t) => t.id !== id);
+  function removeToast(id: string | number) {
+    toasts.value = toasts.value.filter((t: Toast) => t.id !== id);
   }
 
-  function setToasterVisibilityInterval(timeout, id, isPaused) {
+  function setToasterVisibilityInterval(
+    timeout: Ref,
+    id: string | number,
+    isPaused: Ref
+  ) {
     const timeoutId = setInterval(() => {
       if (isPaused.value) {
         return;

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="type === 'date'" class="range-inputs">
+  <div v-if="type === 'date'" :class="['range-inputs', customClass]">
     <span class="range-inputs__label" v-if="label">{{ label }}</span>
     <div class="range-inputs__inputs">
       <BaseInput
@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import BaseInput from "@/components/input/BaseInput.vue";
+import BaseInput from "../input/BaseInput.vue";
 import { nextTick, ref } from "vue";
 import debounce from "lodash.debounce";
 
@@ -84,13 +84,12 @@ const {
   disabled = false,
   customClass = "",
   variant = "square",
-  placeholder = "",
 
   label = "",
 } = defineProps<RangeInputProps>();
 
-const onRangeEndUpdate = debounce((e) => {
-  if (e < rangeStart.value) {
+const onRangeEndUpdate = debounce((e: number) => {
+  if (e < +rangeStart.value) {
     rangeEnd.value = rangeStart.value;
     nextTick(() => {
       rangeEndKey.value++;
@@ -99,8 +98,8 @@ const onRangeEndUpdate = debounce((e) => {
   }
   rangeEnd.value = e;
 }, 500);
-const onRangeStartUpdate = debounce((e) => {
-  if (e > rangeEnd.value && rangeEnd.value > 0) {
+const onRangeStartUpdate = debounce((e: number) => {
+  if (e > +rangeEnd.value && +rangeEnd.value > 0) {
     rangeStart.value = rangeEnd.value;
     nextTick(() => {
       rangeStartKey.value++;

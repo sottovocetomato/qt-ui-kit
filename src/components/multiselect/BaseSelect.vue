@@ -4,6 +4,7 @@
     @click.self="toggleList"
     :class="[
       'multiple-select',
+      customClass,
       errorMessage ? 'error' : '',
       variant ? `${variant}` : '',
     ]"
@@ -16,6 +17,7 @@
       id="multiple-select__input"
       :placeholder="placeholder"
       autocomplete="off"
+      :disabled="disabled"
       @input="onSearch"
       @click.self="toggleList"
       @keydown="(e) => toggleList(e, { searching: true })"
@@ -57,14 +59,13 @@
 
 <script setup lang="ts">
 import { useField } from "vee-validate";
-import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from "vue";
+import { computed, nextTick, ref, useTemplateRef, watch } from "vue";
 import { useClickOutside } from "../../composables/useClickOutside";
 
 interface MultipleSelectProps {
-  id?: string;
   name?: string;
   disabled?: boolean;
-  options?: [];
+  options?: HTMLOptionElement[];
   customClass?: string;
   variant?: "square" | "oval";
   placeholder?: string;
@@ -76,9 +77,8 @@ interface MultipleSelectProps {
 const multiselect = useTemplateRef("multiselect");
 const multiselectInput = useTemplateRef("multiselectInput");
 const selectContentList = useTemplateRef("selectContentList");
-const model = defineModel();
+
 const {
-  id = "select-input",
   name = "",
   options = [],
   customClass = "",
@@ -92,7 +92,7 @@ const {
 const showList = ref(false);
 const search = ref("");
 
-function normalizeStr(str) {
+function normalizeStr(str: string) {
   return String(str).toLowerCase().trim();
 }
 
@@ -100,9 +100,10 @@ function clearSearch() {
   console.log("clear");
   search.value = "";
 }
-function onSearch(e) {
-  if (!e || !e.target) return;
-  search.value = e?.target?.value;
+function onSearch(e: Event) {
+  const target = e.target as HTMLInputElement;
+  if (!e || !target) return;
+  search.value = target?.value;
 }
 
 const selectedText = ref("");
@@ -125,32 +126,36 @@ const isSelectedShown = computed(() => {
 
 useClickOutside(multiselect, toggleList);
 
-function toggleList(e, { searching } = {}) {
+function toggleList(e: Event, { searching = false } = {}) {
   if (searching && showList.value) return;
-  if (!multiselect.value) return;
-  if (!showList.value && !e.composedPath().includes(multiselect.value)) return;
+  if (!multiselect.value || !multiselectInput.value) return;
+  if (
+    !showList.value &&
+    !e.composedPath().includes(multiselect.value as HTMLElement)
+  )
+    return;
   console.log("toggling");
 
   multiselect.value.classList.toggle("list-open");
   showList.value = !showList.value;
   nextTick(() => {
     if (showList.value) {
-      multiselectInput.value.focus();
+      multiselectInput.value!.focus();
     }
   });
 }
 
-function editMultipleSelectedText(opt) {
-  selectedText.value = selectedText.value.split(", ").filter((e) => e);
+function editMultipleSelectedText(opt: HTMLOptionElement) {
+  let preparedSelected = selectedText.value.split(", ").filter((e) => e);
   if (selectedText.value.includes(opt.text)) {
-    selectedText.value = selectedText.value.filter((text) => text !== opt.text);
+    preparedSelected = preparedSelected.filter((text) => text !== opt.text);
   } else {
-    selectedText.value.push(opt.text);
+    preparedSelected.push(opt.text);
   }
-  selectedText.value = selectedText.value.join(", ");
+  selectedText.value = preparedSelected.join(", ");
 }
 
-function editMultipleValue(opt) {
+function editMultipleValue(opt: HTMLOptionElement) {
   if (!value.value) {
     value.value = [];
   }
@@ -161,23 +166,26 @@ function editMultipleValue(opt) {
   }
 }
 
-function onOptionSelect(opt, e) {
+function onOptionSelect(opt: HTMLOptionElement, e: Event) {
+  const target = e.target as HTMLElement;
   if (multiple) {
-    e.target.classList.toggle("selected");
+    target.classList.toggle("selected");
     editMultipleValue(opt);
     editMultipleSelectedText(opt);
   } else {
-    selectContentList.value
-      .querySelectorAll(".multiple-select__content-list__option")
-      ?.forEach((el) => {
-        if (el.classList.contains("selected")) {
-          el.classList.remove("selected");
-        }
-      });
-    e.target.classList.toggle("selected");
-    value.value = opt.value;
-    selectedText.value = opt.text;
-    toggleList(e);
+    if (selectContentList.value) {
+      selectContentList.value
+        .querySelectorAll(".multiple-select__content-list__option")
+        ?.forEach((el) => {
+          if (el.classList.contains("selected")) {
+            el.classList.remove("selected");
+          }
+        });
+      target.classList.toggle("selected");
+      value.value = opt.value;
+      selectedText.value = opt.text;
+      toggleList(e);
+    }
   }
   clearSearch();
 }
@@ -185,7 +193,7 @@ function onOptionSelect(opt, e) {
 const { value, errorMessage } = useField(() => name);
 watch(value, (newVal) => {
   if (!newVal) {
-    selectedText.value = [];
+    selectedText.value = "";
   }
 });
 </script>

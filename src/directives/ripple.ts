@@ -1,4 +1,4 @@
-function createRipple(el, e) {
+function createRipple(el: HTMLElement, e: MouseEvent) {
   const circle = document.createElement("span");
   const diameter = Math.max(el.clientWidth, el.clientHeight);
   const radius = diameter / 2;
@@ -13,11 +13,11 @@ function createRipple(el, e) {
   el.appendChild(circle);
 }
 export default {
-  mounted(el) {
+  mounted(el: HTMLElement) {
     console.log(this, "this from directive");
     el.addEventListener("click", (e) => createRipple(el, e));
   },
-  beforeUnmount(el) {
+  beforeUnmount(el: HTMLElement) {
     el.removeEventListener("click", (e) => createRipple(el, e));
   },
 };
