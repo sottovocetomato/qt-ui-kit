@@ -128,7 +128,7 @@ useClickOutside(multiselect, toggleList);
 
 function toggleList(e: Event, { searching = false } = {}) {
   if (searching && showList.value) return;
-  if (!multiselect.value || !multiselectInput.value) return;
+  if (!multiselect.value) return;
   if (
     !showList.value &&
     !e.composedPath().includes(multiselect.value as HTMLElement)
@@ -139,7 +139,7 @@ function toggleList(e: Event, { searching = false } = {}) {
   multiselect.value.classList.toggle("list-open");
   showList.value = !showList.value;
   nextTick(() => {
-    if (showList.value) {
+    if (showList.value && multiselectInput.value) {
       multiselectInput.value!.focus();
     }
   });

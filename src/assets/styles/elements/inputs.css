@@ -2,7 +2,7 @@
   /*--input-group-border-color: light-dark(#f7f8f8, #859cb25a);*/
   --input-group-border-color: light-dark(#f1f1f1, #859cb25a);
   --input-group-bg-color: light-dark(Canvas, rgba(155, 155, 155, 0.35));
-  --input-group-border-color-focus: light-dark(#174b7c5a, #62738359);
+  --input-group-border-color-focus: light-dark(#174b7c5a, #547bb1);
   --input-group-border: 2px solid var(--input-group-border-color, GrayText);
   --input-group-border-radius: 6px;
   --input-group-border-radius-oval: 35px;
@@ -10,11 +10,14 @@
   --input-group-height: 64px;
 }
 .character-counter {
-  font-size: var(--font-sm);
+  position: absolute;
+  font-size: var(--font-xs);
   text-align: right;
   display: block;
   color: GrayText;
   opacity: 0.4;
+  bottom: 2px;
+  right: 2px;
 }
 
 .input-wrap,
@@ -41,12 +44,11 @@ textarea {
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="date"]:focus,
-textarea:focus,
-input[type="text"]:focus-visible,
-input[type="number"]:focus-visible,
-input[type="date"]:focus-visible,
-textarea:focus-visible {
-  outline-color: light-dark(#174b7c5a, #62738359) !important;
+textarea:focus {
+  outline-color: var(--input-group-border-color-focus);
+  outline-style: double;
+  outline-width: 2px;
+  outline-offset: -2px;
   /*outline: 2px inset var(--input-group-border-color-focus);*/
 }
 
@@ -192,7 +194,7 @@ input[type="checkbox"]:checked {
   --checkbox-bg-accent: light-dark(Field, #f1f1f1);
   --input-group-border-color: light-dark(
     color-mix(in srgb, GrayText 10%, CanvasText 10%),
-    color-mix(in srgb, GrayText 60%, CanvasText 40%)
+    color-mix(in srgb, GrayText 50%, CanvasText 50%)
   );
 }
 @media (hover: hover) {

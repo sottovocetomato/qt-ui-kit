@@ -9,10 +9,14 @@
   margin-bottom: var(--spacer);
   font-weight: 500;
   user-select: none;
+  background-color: Field;
 }
 
 .multiple-select input {
   line-height: 50px;
+}
+.multiple-select input:focus {
+  outline: none !important;
 }
 .multiple-select__clear,
 .multiple-select__select {
@@ -47,19 +51,7 @@
   height: 100%;
   background-color: var(--primary-color-light);
 }
-.autocomplete-wrap label {
-  font-size: var(--font-md);
-  margin-bottom: 2rem;
-}
-.autocomplete-wrap input {
-  padding: 1.2rem;
-  border-radius: 1rem;
-  border: 1px solid #ccc;
-}
-.autocomplete-wrap input:focus {
-  outline: 1px solid #999898;
-}
-.autocomplete-list,
+
 .multiple-select__content-wrap {
   position: absolute;
   left: 0;
@@ -68,11 +60,11 @@
   padding: var(--spacer) 0;
   top: calc(var(--input-group-height) + 5px);
 
-  outline: var(--input-group-border);
+  outline: 2px solid var(--input-group-border-color-focus);
   overflow-y: auto;
   border-radius: 1rem;
   z-index: 100;
-  background: white;
+  background: Field;
 }
 .multiple-select__content-list__option p {
   pointer-events: none;
@@ -100,13 +92,14 @@
   margin: 0;
   border-radius: 0;
 }
-.multiple-select > #multiple-select__input + label {
+.multiple-select > #multiple-select__input + label,
+.multiple-select__selected + label {
   /* allows label to be absolute */
   position: absolute;
   top: 51%;
   transform: translateY(-50%);
   left: calc(var(--spacer));
-  font-size: var(--font-sm);
+  font-size: var(--font-md);
   pointer-events: none;
   transition: 0.3s;
   font-weight: 400;
@@ -114,6 +107,10 @@
 .multiple-select__selected {
   font-size: var(--font-md);
   line-height: 80px;
+}
+.multiple-select.list-open {
+  outline: 2px double var(--input-group-border-color-focus);
+  outline-offset: -2px;
 }
 .multiple-select.list-open > #multiple-select__input + label,
 .multiple-select__selected + label {
