@@ -25,7 +25,7 @@ type Story = StoryObj<typeof BaseButton>;
 console.log(ThemeType.LIGHT);
 export const PrimaryButton: Story = {
   args: {
-    shape: "oval",
+    shape: "square",
   },
 
   render: (args) => ({

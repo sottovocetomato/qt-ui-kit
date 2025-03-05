@@ -4,7 +4,7 @@
   --input-group-bg-color: light-dark(Canvas, rgba(155, 155, 155, 0.35));
   --input-group-border-color-focus: light-dark(#174b7c5a, #547bb1);
   --input-group-border: 2px solid var(--input-group-border-color, GrayText);
-  --input-group-border-radius: 6px;
+  --input-group-border-radius: var(--main-border-radius);
   --input-group-border-radius-oval: 35px;
   --input-group-padding: 20px;
   --input-group-height: 64px;
@@ -24,7 +24,7 @@
 .textarea-wrap,
 .multiple-select {
   position: relative;
-  color: var(--main-font-color);
+  color: var(--forms-font-color);
 }
 input[type="text"],
 input[type="number"],
@@ -35,7 +35,7 @@ textarea {
   border-radius: var(--input-group-border-radius);
   padding: 0 var(--input-group-padding);
   font-size: var(--font-md);
-  color: var(--main-font-color);
+  color: var(--forms-font-color);
   line-height: 50px;
   font-weight: 500;
   width: 100%;
@@ -121,7 +121,7 @@ select.oval {
 .range-inputs__label {
   display: inline-block;
   font-size: var(--font-sm);
-  color: var(--main-font-color);
+  color: var(--forms-font-color);
   margin-bottom: var(--spacer);
 }
 
@@ -151,7 +151,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   label {
     display: flex;
     align-items: center;
-    color: var(--main-font-color);
+    color: var(--forms-font-color);
     gap: 0.5rem;
     position: relative;
   }

@@ -39,10 +39,12 @@ hr {
 .light {
   color-scheme: light;
   background-color: var(--bg-color-main);
+  color: var(--light-theme-font-color);
 }
 .dark {
   color-scheme: dark;
   background-color: var(--bg-color-main);
+  color: var(--dark-theme-font-color);
 }
 .container {
   width: 1200px;

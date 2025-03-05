@@ -8,11 +8,12 @@
 
 .btn {
   height: var(--btn-height-md);
-  width: var(--btn-width);
+  min-width: var(--btn-width);
+  padding: 0 var(--spacer);
   outline: none;
   border: none;
-  border-radius: 5px;
-  color: white;
+  border-radius: var(--main-border-radius);
+  color: var(--dark-theme-font-color);
   font-size: var(--font-md);
   display: block;
   background: linear-gradient(#0000, rgb(0 0 0/15%)) top/100% 800%;

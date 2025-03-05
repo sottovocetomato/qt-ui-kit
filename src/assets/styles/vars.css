@@ -5,11 +5,13 @@
   --primary-color: #174b7c;
   --danger-color: #862823;
   --warning-color: #dca11c;
-  --dark-theme-font-color: #547bb1;
+  --light-theme-font-color: #3f4756;
+  --dark-theme-font-color: #f1f1e6;
+  --dark-theme-forms-font-color: #547bb1;
 
-  --main-font-color: light-dark(
+  --forms-font-color: light-dark(
     var(--primary-color),
-    var(--dark-theme-font-color)
+    var(--dark-theme-forms-font-color)
   );
 
   --header-color: light-dark(#1a263d, #1a263d);
@@ -33,6 +35,7 @@
 
 /* sizing */
 :root {
+  --main-border-radius: 6px;
   --spacer: 20px;
 
   --font-xxl: 3.2rem;
