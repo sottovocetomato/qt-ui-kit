@@ -32,7 +32,7 @@ import { useField } from "vee-validate";
 import { defineProps } from "vue";
 
 interface InputProps {
-  type?: "text" | "number";
+  type?: "text" | "number" | "date";
   variant?: "square" | "oval";
   name?: string;
   disabled?: boolean;
@@ -64,7 +64,7 @@ const {
   label = "Label",
 } = defineProps<InputProps>();
 
-const { value, errorMessage } = useField(() => name, undefined, {
+const { value, errorMessage } = useField<string>(() => name, undefined, {
   syncVModel: true,
 });
 </script>

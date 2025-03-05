@@ -159,10 +159,12 @@ function editMultipleValue(opt: HTMLOptionElement) {
   if (!value.value) {
     value.value = [];
   }
-  if (value.value?.includes(opt.value)) {
-    value.value = value.value.filter((value) => value !== opt.value);
-  } else {
-    value.value.push(opt.value);
+  if (Array.isArray(value.value)) {
+    if (value.value?.includes(opt.value)) {
+      value.value = value.value.filter((value) => value !== opt.value);
+    } else {
+      value.value.push(opt.value);
+    }
   }
 }
 
@@ -190,7 +192,7 @@ function onOptionSelect(opt: HTMLOptionElement, e: Event) {
   clearSearch();
 }
 
-const { value, errorMessage } = useField(() => name);
+const { value, errorMessage } = useField<string | string[]>(() => name);
 watch(value, (newVal) => {
   if (!newVal) {
     selectedText.value = "";

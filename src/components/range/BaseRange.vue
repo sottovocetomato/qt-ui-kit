@@ -69,11 +69,11 @@ interface RangeInputProps {
   label?: string;
 }
 
-const dateStart = ref(null);
-const dateEnd = ref(null);
+const dateStart = ref();
+const dateEnd = ref();
 
-const rangeStart = ref(null);
-const rangeEnd = ref(null);
+const rangeStart = ref();
+const rangeEnd = ref();
 const rangeStartKey = ref(0);
 const rangeEndKey = ref(0);
 
@@ -89,7 +89,8 @@ const {
 } = defineProps<RangeInputProps>();
 
 const onRangeEndUpdate = debounce((e: number) => {
-  if (e < +rangeStart.value) {
+  if (!rangeStart.value || isNaN(Number(rangeStart.value))) return;
+  if (e < rangeStart.value) {
     rangeEnd.value = rangeStart.value;
     nextTick(() => {
       rangeEndKey.value++;
@@ -99,7 +100,8 @@ const onRangeEndUpdate = debounce((e: number) => {
   rangeEnd.value = e;
 }, 500);
 const onRangeStartUpdate = debounce((e: number) => {
-  if (e > +rangeEnd.value && +rangeEnd.value > 0) {
+  if (!rangeEnd.value || isNaN(Number(rangeEnd.value))) return;
+  if (e > rangeEnd.value && rangeEnd.value > 0) {
     rangeStart.value = rangeEnd.value;
     nextTick(() => {
       rangeStartKey.value++;

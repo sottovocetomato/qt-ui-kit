@@ -1,4 +1,4 @@
-import { defineRule, configure, useForm } from "vee-validate";
+import { defineRule, configure } from "vee-validate";
 import {
   required,
   email,
@@ -31,12 +31,16 @@ const setDefaultValidationRules = () => {
         return `Поле ${context.field} не подходит под заданное правило`;
       }
       if (context.rule?.name === "min_value") {
-        return `Поле должно быть больше ${
-          context.rule.params[0] ?? ""
-        } ${JSON.stringify(context.rule.params)}`;
+        if (Array.isArray(context.rule.params)) {
+          return `Поле должно быть больше ${
+            context.rule?.params?.[0] ?? ""
+          } ${JSON.stringify(context.rule.params)}`;
+        }
       }
       if (context.rule?.name === "max_value") {
-        return `Поле должно быть меньше ${context.rule.params[0] ?? ""}`;
+        if (Array.isArray(context.rule.params)) {
+          return `Поле должно быть меньше ${context?.rule?.params?.[0] ?? ""}`;
+        }
       }
       return `${context.field} содержит некоректные данные`;
     },
@@ -52,7 +56,7 @@ const setDefaultValidationRules = () => {
   defineRule("min", min);
   defineRule("max", max);
 
-  defineRule("phone", (value) => {
+  defineRule("phone", (value: string) => {
     if (value.length <= 17) {
       return `Указан некорректный номер телефон`;
     }

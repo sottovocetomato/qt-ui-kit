@@ -54,7 +54,7 @@ const {
   height = "",
 } = defineProps<InputProps>();
 
-const { value, errorMessage } = useField(() => name, undefined, {
+const { value, errorMessage } = useField<string>(() => name, undefined, {
   syncVModel: true,
 });
 </script>
