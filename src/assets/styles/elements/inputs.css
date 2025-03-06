@@ -145,15 +145,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 39% !important;
 }
 
-.checkbox-wrap {
+.checkbox-wrap,
+.radio-wrap {
   position: relative;
   line-height: 1;
   label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     color: var(--forms-font-color);
     gap: 0.5rem;
     position: relative;
+    margin-inline-end: 0;
+    margin-right: var(--spacer);
   }
   .error-message {
     bottom: -20px;
@@ -177,9 +180,10 @@ input[type="checkbox"] {
   position: relative;
 }
 
-input[type="checkbox"] + label {
-  font-size: var(--font-sm);
-}
+/*input[type="checkbox"] + label,*/
+/*input[type="radio"] + label {*/
+/*  font-size: var(--font-sm);*/
+/*}*/
 
 input[type="checkbox"]::after {
   background: var(--checkbox-bg-accent, transparent);
@@ -197,15 +201,52 @@ input[type="checkbox"]:checked {
     color-mix(in srgb, GrayText 50%, CanvasText 50%)
   );
 }
+
+input[type="radio"] {
+  --radio-border-w: calc(1em * (4 / 3) / 10);
+  --radio-accent: var(--primary-color);
+  --radio-bg-accent: light-dark(Field, transparent);
+  /*--radio-mask: url("../../icons/checkmark.svg");*/
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin: 0;
+  width: 1em;
+  font-size: inherit;
+  position: relative;
+  background: var(--input-group-bg-color, Field);
+  border: var(--radio-border-w) solid var(--input-group-border-color);
+  display: inline-grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--primary-color);
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
 @media (hover: hover) {
-  input[type="checkbox"]:not(:checked):hover {
+  input[type="checkbox"]:not(:checked):hover,
+  input[type="radio"]:not(:checked):hover {
     cursor: pointer;
     --input-group-border-color: light-dark(
       color-mix(in srgb, GrayText 20%, CanvasText 20%),
       color-mix(in srgb, GrayText 60%, CanvasText 40%)
     );
   }
-  input[type="checkbox"]:checked:hover {
+  input[type="checkbox"]:checked:hover,
+  input[type="radio"]:checked:hover {
     cursor: pointer;
     --input-group-bg-color: color-mix(
       in srgb,
