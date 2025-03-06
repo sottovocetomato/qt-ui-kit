@@ -27,6 +27,9 @@
   --validation-error-focus: light-dark(#fa4040, #fa8888);
 
   --box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  --card-bg-color: light-dark(Canvas, #3f4756);
+  --card-box-shadow-color: rgba(0, 0, 0, 0.2);
+  --card-box-shadow: 0 10px 30px 5px var(--card-box-shadow-color);
 }
 
 /* border */
@@ -36,6 +39,7 @@
 /* sizing */
 :root {
   --main-border-radius: 6px;
+  --card-border-radius: 10px;
   --spacer: 20px;
 
   --font-xxl: 3.2rem;

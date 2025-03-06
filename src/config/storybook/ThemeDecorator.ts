@@ -4,5 +4,5 @@ export enum ThemeType {
 }
 
 export const ThemeDecorator = (theme: ThemeType) => () => ({
-  template: `<div id="theme-decorator" class="${theme}" style="padding: 1rem; height:96vh"><story /></div>`,
+  template: `<div id="theme-decorator" class="${theme}" style="padding: 1rem; height:100vh"><story /></div>`,
 });
