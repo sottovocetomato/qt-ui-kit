@@ -30,13 +30,21 @@ export const DefaultRadio: Story = {
         { label: "Male", value: "m" },
         { label: "Female", value: "f" },
       ];
-      return { args, radioArr };
+      const radioArr2 = [
+        { label: "Student", value: "st" },
+        { label: "Worker", value: "wk" },
+      ];
+      const radioArr3 = [
+        { label: "Marathon", value: "mrth" },
+        { label: "Sprint", value: "spr" },
+      ];
+      return { args, radioArr, radioArr2, radioArr3 };
     },
 
-    template: `<div style="display: flex; flex-direction: column; gap: 12px;">
+    template: `<div style="display: flex; flex-direction: column; gap: 20px;">
                   <BaseRadio v-bind="args" size="md" :options="radioArr"></BaseRadio>
-                  <BaseRadio v-bind="args" size="lg" :options="radioArr"></BaseRadio> 
-                  <BaseRadio v-bind="args" size="xl" :options="radioArr"></BaseRadio> 
+                  <BaseRadio v-bind="args" size="lg" :options="radioArr2"></BaseRadio> 
+                  <BaseRadio v-bind="args" size="xl" :options="radioArr3"></BaseRadio> 
                 </div>
           `,
   }),
@@ -54,6 +62,10 @@ export const ValidationErrorInput: Story = {
   render: (args) => ({
     components: { BaseRadio },
     setup() {
+      const radioArr = [
+        { label: "Male", value: "m" },
+        { label: "Female", value: "f" },
+      ];
       const { setFieldError, errors } = useForm({
         initialValues: {
           radio: "",
@@ -61,10 +73,10 @@ export const ValidationErrorInput: Story = {
       });
       onMounted(() => setFieldError("radio", "This field cannot be empty!"));
 
-      return { args, setFieldError, errors };
+      return { args, setFieldError, errors, radioArr };
     },
 
-    template: `<BaseRadio v-bind="args" name="checkbox"></BaseRadio>`,
+    template: `<BaseRadio v-bind="args" name="radio" :options="radioArr"></BaseRadio>`,
   }),
   args: {
     theme: ThemeType.LIGHT,

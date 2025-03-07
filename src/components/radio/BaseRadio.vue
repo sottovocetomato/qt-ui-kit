@@ -19,7 +19,7 @@
           :disabled="radio?.disabled"
           :value="radio.value || radio.label"
         />
-        <span v-if="label"> {{ label }}</span></label
+        <span v-if="label"> {{ radio.label }}</span></label
       >
     </div>
 

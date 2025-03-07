@@ -36,7 +36,7 @@
           :disabled="checkbox?.disabled"
           :value="checkbox.value || checkbox.label"
         />
-        <span v-if="label"> {{ label }}</span></label
+        <span v-if="label"> {{ checkbox.label }}</span></label
       >
     </div>
     <span v-if="errorMessage" class="error-message">
