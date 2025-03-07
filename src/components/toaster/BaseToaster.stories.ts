@@ -11,7 +11,6 @@ import {
 import useModal from "../../composables/useModal";
 import type { ModalsList } from "../../composables/useModal";
 import { useToasts } from "../../composables/useToasts";
-import { nextTick, onMounted, ref } from "vue";
 
 const meta: Meta<typeof BaseToaster> = {
   component: BaseToaster,
@@ -25,7 +24,7 @@ export const DefaultToasters: Story = {
     components: { BaseToaster, BaseButton },
     setup() {
       const { addToast } = useToasts();
-      const loaded = ref(false);
+
       function addNewToast(variant) {
         addToast({
           title: "Hello Again",
@@ -34,10 +33,8 @@ export const DefaultToasters: Story = {
           variant,
         });
       }
-      onMounted(() => {
-        loaded.value = true;
-      });
-      return { args, addNewToast, loaded };
+
+      return { args, addNewToast };
     },
 
     template: `

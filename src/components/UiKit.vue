@@ -8,6 +8,7 @@
       >Add Toast</BaseButton
     >
     <BaseButton @click="addToasts" variant="warning">Add Toast</BaseButton>
+    <BaseButton @click="changeTheme" variant="warning">Change Theme</BaseButton>
   </div>
 </template>
 
@@ -15,7 +16,8 @@
 import BaseButton from "./button/BaseButton.vue";
 import BaseToaster from "./toaster/BaseToaster.vue";
 import { useToasts } from "../composables/useToasts";
-
+import { useTheme } from "../composables/useTheme";
+const { changeTheme } = useTheme();
 const { addToast } = useToasts();
 function addToasts() {
   addToast({ title: "Hello", message: "Goodbye", variant: "warning" });

@@ -1,5 +1,5 @@
 <template>
-  <Teleport :to="teleport">
+  <Teleport :to="teleport" v-if="loaded">
     <div class="toasters-wrap">
       <TransitionGroup name="toaster">
         <div
@@ -38,9 +38,14 @@
 <script setup lang="ts">
 import { useToasts } from "../../composables/useToasts";
 import IconClose from "../../assets/icons/IconClose.vue";
+import { onMounted, ref } from "vue";
 interface ToasterProps {
   teleport?: string;
 }
+const loaded = ref(false);
+onMounted(() => {
+  loaded.value = true;
+});
 const { teleport = "body" } = defineProps<ToasterProps>();
 const { getToasts, toggleToasterPause, removeToast } = useToasts();
 const toasts = getToasts();
