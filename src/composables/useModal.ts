@@ -2,14 +2,14 @@ import { ref } from "vue";
 import type { Ref } from "vue";
 import generateUID from "../helpers/uuid";
 
-export interface ModalsList {
-  [key: string]: {
+export type ModalsList = Record<
+  string,
+  {
     isOpen: Ref;
     toggleModal: () => void;
     modalId: string;
-  };
-}
-
+  }
+>;
 const useModal = (names: string[] = []) => {
   const modalsList = ref<ModalsList>({});
 
@@ -22,7 +22,7 @@ const useModal = (names: string[] = []) => {
       console.log(isOpen.value, "isOpen.value");
     }
 
-    modalsList[name] = { isOpen, toggleModal, modalId };
+    modalsList.value[name] = { isOpen, toggleModal, modalId };
   }
 
   names.forEach((name) => initModal(name));

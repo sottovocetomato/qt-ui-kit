@@ -1,0 +1,31 @@
+.table-wrap {
+  width: 100%;
+  table {
+    text-align: left;
+    border-collapse: collapse;
+    font-size: var(--font-md);
+
+    width: 100%;
+    td,
+    th {
+      font-weight: normal;
+      border-bottom: var(--input-group-border);
+      padding: var(--spacer) 0;
+      vertical-align: baseline;
+    }
+    thead {
+      border-block-end: 4px solid var(--input-group-border-color);
+    }
+    tfoot {
+      border-block: 4px solid var(--input-group-border-color);
+      th,
+      td {
+        font-weight: 600;
+      }
+    }
+    thead > tr > th {
+      font-weight: 600;
+      font-size: var(--font-lg);
+    }
+  }
+}

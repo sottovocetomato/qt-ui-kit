@@ -20,7 +20,7 @@ import { defineProps } from "vue";
 interface ButtonProps {
   customClass?: string;
   size?: "sm" | "md" | "lg";
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "primary" | "secondary" | "danger" | "warning";
   shape?: "oval" | "square";
   disabled?: boolean;
 }

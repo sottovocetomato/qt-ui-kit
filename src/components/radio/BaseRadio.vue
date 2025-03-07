@@ -41,7 +41,6 @@ interface radioObj {
 
 interface RadioProps {
   name?: string;
-  disabled?: boolean;
   customClass?: string;
   label?: string;
   size?: "md" | "lg" | "xl";
@@ -51,7 +50,6 @@ interface RadioProps {
 
 const {
   name = "",
-  disabled = false,
   customClass = "",
   options = [],
   size = "md",
