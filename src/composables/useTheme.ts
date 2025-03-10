@@ -1,7 +1,7 @@
 import { ThemeType } from "../config/storybook/ThemeDecorator";
 
-let preferedTheme = localStorage.getItem("preferedTheme");
-let mainElement;
+let preferedTheme = localStorage.getItem("preferedTheme") || "";
+let mainElement: HTMLElement | null;
 export const useTheme = () => {
   function initTheme(tag: string = "body") {
     mainElement = document.querySelector(`${tag}`);
@@ -18,13 +18,13 @@ export const useTheme = () => {
     if (!mainElement) {
       initTheme("body");
     }
-    mainElement.classList.remove(preferedTheme);
+    mainElement!.classList.remove(preferedTheme);
     if (preferedTheme === ThemeType.LIGHT) {
       preferedTheme = ThemeType.DARK;
     } else {
       preferedTheme = ThemeType.LIGHT;
     }
-    mainElement.classList.add(preferedTheme);
+    mainElement!.classList.add(preferedTheme);
     localStorage.setItem("preferedTheme", preferedTheme);
   }
   return { initTheme, changeTheme };

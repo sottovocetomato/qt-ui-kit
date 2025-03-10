@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 
-interface ButtonProps {
+export interface ButtonProps {
   customClass?: string;
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "secondary" | "danger" | "warning";

@@ -1,5 +1,42 @@
-# Vue 3 + TypeScript + Vite
+# QuietTomato UI 
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Simple UI-kit that uses vee-validate and maska packages.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+# Features
+
+- Toasts
+- Modal window
+- Light and dark themes
+- Button ripple effect as vue directive
+
+# Installation
+
+```
+npm i quiettomato-ui
+```
+
+
+# Usage
+
+import components and needed directive/composables:
+
+```javascript
+<script setup lang="ts">
+    import { BaseInput, BaseButton, useToasts } from "quiettomato-ui";
+    const { addToast } = useToasts();
+    function addToasts() {
+        addToast({ title: "Hello", message: "How are you?", variant: "warning" });
+    }
+</script>
+```
+
+template:
+
+```vue
+<template>
+  <div class="container">
+    <BaseInput shape="black"></BaseInput>
+    <BaseButton @click="addToasts"> Add Toast! </BaseButton>
+  </div>
+</template>
+```

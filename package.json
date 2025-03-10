@@ -1,8 +1,13 @@
 {
   "name": "quiettomato-ui",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.0.7",
   "type": "module",
+  "author": {
+    "name": "Quiettomato",
+    "nickname": "quiettomato",
+    "github": "https://github.com/sottovocetomato"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
@@ -16,16 +21,18 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/quiettomatoui.es.ts",
-      "require": "./dist/quiettomatoui.umd.ts"
+      "import": "./dist/quiettomatoui.es.js",
+      "require": "./dist/quiettomatoui.umd.js",
+      "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/style.css"
+    "./*.css": "./dist/*.css"
   },
   "dependencies": {
     "@vee-validate/rules": "4.15.0",
     "lodash.debounce": "^4.0.8",
     "maska": "3.1.0",
     "vee-validate": ">=4",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vue": ">=3"
   },
   "devDependencies": {
