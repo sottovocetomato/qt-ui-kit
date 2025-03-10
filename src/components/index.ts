@@ -1,4 +1,8 @@
 import "../style.css";
+
+import rippleEffect from "../directives/ripple";
+import setDefaultValidationRules from "../config/vee-validate/validation";
+
 import BaseInput from "./input/BaseInput.vue";
 import BaseModal from "./modal/BaseModal.vue";
 import BaseButton from "./button/BaseButton.vue";
@@ -9,6 +13,11 @@ import BaseRadio from "./radio/BaseRadio.vue";
 import BaseRange from "./range/BaseRange.vue";
 import BaseTable from "./table/BaseTable.vue";
 import BaseToaster from "./toaster/BaseToaster.vue";
+import { useToasts } from "../composables/useToasts";
+import useModal from "../composables/useModal";
+import { useClickOutside } from "../composables/useClickOutside";
+import { useTheme } from "../composables/useTheme";
+
 export {
   BaseInput,
   BaseModal,
@@ -20,4 +29,10 @@ export {
   BaseRange,
   BaseTable,
   BaseToaster,
+  setDefaultValidationRules,
+  rippleEffect,
+  useTheme,
+  useClickOutside,
+  useModal,
+  useToasts,
 };

@@ -19,7 +19,6 @@ const useModal = (names: string[] = []) => {
 
     function toggleModal() {
       isOpen.value = !isOpen.value;
-      console.log(isOpen.value, "isOpen.value");
     }
 
     modalsList.value[name] = { isOpen, toggleModal, modalId };
@@ -28,7 +27,7 @@ const useModal = (names: string[] = []) => {
   names.forEach((name) => initModal(name));
 
   return {
-    modalsList,
+    modalsList: modalsList.value,
   };
 };
 

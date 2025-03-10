@@ -29,8 +29,16 @@ import components and needed directive/composables:
 
 ```javascript
 <script setup lang="ts">
-    import { BaseInput, BaseButton, useToasts } from "quiettomato-ui";
+    import {
+    BaseInput,
+    BaseButton,
+    useToasts,
+    useTheme,
+    BaseToaster,
+} from "quiettomato-ui";
     const { addToast } = useToasts();
+    const { initTheme, changeTheme } = useTheme();
+    initTheme("body");
     function addToasts() {
         addToast({ title: "Hello", message: "How are you?", variant: "warning" });
     }
@@ -42,8 +50,10 @@ template:
 ```vue
 <template>
   <div class="container">
+    <BaseToaster />
     <BaseInput shape="black"></BaseInput>
     <BaseButton @click="addToasts"> Add Toast! </BaseButton>
+    <BaseButton @click="changeTheme"> Change Theme </BaseButton>
   </div>
 </template>
 ```
