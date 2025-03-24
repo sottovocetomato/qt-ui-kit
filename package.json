@@ -1,7 +1,7 @@
 {
   "name": "quiettomato-ui",
   "private": false,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "author": {
     "name": "Quiettomato",
@@ -28,6 +28,7 @@
     "./*.css": "./dist/*.css"
   },
   "dependencies": {
+    "@vee-validate/nuxt": "^4.15.0",
     "@vee-validate/rules": "4.15.0",
     "lodash.debounce": "^4.0.8",
     "maska": "3.1.0",

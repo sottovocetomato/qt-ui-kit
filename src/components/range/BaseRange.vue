@@ -89,9 +89,13 @@ const {
 } = defineProps<RangeInputProps>();
 
 const onRangeEndUpdate = debounce((e: number) => {
-  if (!rangeStart.value || isNaN(Number(rangeStart.value))) return;
-  if (e < rangeStart.value) {
-    rangeEnd.value = rangeStart.value;
+  let compared = 0;
+  if (rangeStart.value && !isNaN(Number(rangeStart.value))) {
+    compared = rangeStart.value;
+  }
+
+  if (e < compared) {
+    rangeEnd.value = compared;
     nextTick(() => {
       rangeEndKey.value++;
     });
@@ -100,9 +104,12 @@ const onRangeEndUpdate = debounce((e: number) => {
   rangeEnd.value = e;
 }, 500);
 const onRangeStartUpdate = debounce((e: number) => {
-  if (!rangeEnd.value || isNaN(Number(rangeEnd.value))) return;
-  if (e > rangeEnd.value && rangeEnd.value > 0) {
-    rangeStart.value = rangeEnd.value;
+  let compared = 0;
+  if (rangeEnd.value && !isNaN(Number(rangeEnd.value))) {
+    compared = rangeEnd.value;
+  }
+  if (e > compared && compared > 0) {
+    rangeStart.value = compared;
     nextTick(() => {
       rangeStartKey.value++;
     });
